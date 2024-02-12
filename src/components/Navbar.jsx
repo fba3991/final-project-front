@@ -1,14 +1,23 @@
-import { NavLink } from "react-router-dom";
-import './Navbar.scss'
-export default function () {
+import { Link } from "react-router-dom";
+import "./Navbar.scss"
+export default function(){
+    
     return (
         <nav className="nav-page">
           <ul>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/PlayersList">Players</NavLink></li>
-            <li><NavLink to="/PlayersForms">Create Players</NavLink></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/Players">Lista Giocatori</Link>
+            </li>
+            <li>
+              <Link to="/Players/create">Crea Giocatore</Link>
+            </li>
+            <li>
+              <Link to="/Players/:id">Modifica Giocatore</Link>
+            </li>
           </ul>
         </nav>
       );
-    
 }

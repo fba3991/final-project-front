@@ -1,3 +1,30 @@
-nav-page {
-text-decoration: none;
-}
+.nav-page {
+    background-color: #333; // Cambia colore di sfondo a tuo piacimento
+    color: #fff; // Cambia colore del testo a tuo piacimento
+    padding: 10px;
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+  
+      li {
+        margin-right: 20px; // Aggiungi spazio tra gli elementi
+      }
+  
+      li:last-child {
+        margin-right: 0; // Rimuovi margine dall'ultimo elemento
+      }
+  
+      a {
+        color: inherit;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline; // Aggiungi sottolineatura al passaggio del mouse
+        }
+      }
+    }
+  }
+  
