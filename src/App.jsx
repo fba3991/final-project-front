@@ -8,45 +8,25 @@ import EditPlayer from './components/EditPlayer';
 
 function App() {
   return (
-    <Routes>
-      <Route 
-        path="/"
-        element={
-          <>
-            <Navbar />
-            <Home /> 
-          </>
-        }
-      />
-      <Route 
-        path="/Players"
-        element={
-          <>
-            <Navbar />
-            <PlayerList /> 
-          </>
-        }
-      />
-      <Route 
-        path="/Players/create"
-        element={
-          <>
-            <Navbar />
-            <CreatePlayer /> 
-          </>
-        }
-      />
-      <Route 
-        path="/Players/:id"
-        element={
-          <>
-            <Navbar />
-            <EditPlayer /> 
-          </>
-        }
-      />
+    <>
+      <Navbar />
+        <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/Players" element={<PlayerList />} />
+      <Route path="/Players/create" element={<CreatePlayer />} />
+      <Route path="/Players/:id/edit" element={<EditPlayer />} />
     </Routes>
+
+    
+    </>
+
+
+
   );
-      }
+}
+
+
+
+
 
 export default App

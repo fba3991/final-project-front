@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import "./Navbar.scss"
 export default function(){
     
     return (
-        <nav className="nav-page">
+        <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -14,9 +13,10 @@ export default function(){
             <li>
               <Link to="/Players/create">Crea Giocatore</Link>
             </li>
-            <li>
-              <Link to="/Players/:id">Modifica Giocatore</Link>
-            </li>
+
+            {/* <li>
+              <Link to="/Players/:id/edit">Modifica Giocatore</Link>
+            </li> */}
           </ul>
         </nav>
       );
