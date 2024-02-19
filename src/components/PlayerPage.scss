@@ -1,0 +1,82 @@
+// PlayerPage.scss
+
+.PlayerPage {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+  
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    li {
+      margin-bottom: 10px;
+    }
+  
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff6347;
+      color: #fff;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+  
+      &:hover {
+        background-color: #d63031;
+      }
+    }
+  
+    .button-secondary {
+      background-color: #6c5ce7;
+  
+      &:hover {
+        background-color: #4834d4;
+      }
+    }
+  
+    .button-danger {
+      background-color: #ff4757;
+  
+      &:hover {
+        background-color: #ff0033;
+      }
+    }
+  
+    .button-link {
+      background-color: transparent;
+      color: #333;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    .error {
+      color: #ff6347;
+      margin-top: 10px;
+    }
+  
+    .loading {
+      margin-top: 20px;
+      text-align: center;
+      color: #333;
+    }
+  }
+  

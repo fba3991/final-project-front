@@ -1,142 +1,381 @@
-import axios from "axios";
+/* import axios from "axios";
 import { useState } from "react";
-import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 const { VITE_BACKEND_URL } = import.meta.env;
 
-export default function CreatePlayer() {
-  const [nome, setNome] = useState("");
-  const [cognome, setCognome] = useState("");
-  const [dataNascita, setDataNascita] = useState("");
-  const [nazionalita, setNazionalita] = useState("");
-  const [posizione, setPosizione] = useState("");
-  const [partiteGiocate, setPartiteGiocate] = useState(0);
-  const [ammonizioni, setAmmonizioni] = useState(0);
-  const [espulsioni, setEspulsioni] = useState(0);
-  const [assist, setAssist] = useState(0);
-  const [gol, setGol] = useState(0);
-  const [error, setError] = useState();
+export default function () {
 
-  const handleSubmit = async (e) => {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [player, setPlayer] = useState({
+    nome: "",
+    cognome: "",
+    dataNascita: "",
+    nazionalita: "",
+    posizione: "",
+    partiteGiocate: 0,
+    ammonizioni: 0,
+    espulsioni: 0,
+    assist: 0,
+    gol: 0,
+    specificFieldForGoalkeeper: ""
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
-     const newPlayer = {
-      nome,
-      cognome,
-      dataNascita:dataNascita && dayjs(dataNascita).format("YYYY-MM-DD"),
-      nazionalita,
-      posizione,
-      partiteGiocate,
-      ammonizioni,
-      espulsioni,
-      assist,
-      gol,
-    }; 
+    
+  
 
-    try {
-      await axios.post(`${VITE_BACKEND_URL}/player`, newPlayer); // Assicurati che l'endpoint sia correttamente scritto come "/player"
-      setNome("");
-      setCognome("");
-      setDataNascita("");
-      setNazionalita("");
-      setPosizione("");
-      setPartiteGiocate(0);
-      setAmmonizioni(0);
-      setEspulsioni(0);
-      setAssist(0);
-      setGol(0);
-      setError(null); // Resetta l'errore quando la richiesta ha successo
-    } catch (error) {
-      setError(error.response.data.message);
-    }
+    axios.post(`${VITE_BACKEND_URL}/player`, player)
+      .then(() => {
+        setPlayer({
+          nome: "",
+        cognome: "",
+        dataNascita: "",
+        nazionalita: "",
+        posizione: "",
+        partiteGiocate: 0,
+        ammonizioni: 0,
+        espulsioni: 0,
+        assist: 0,
+        gol: 0,
+
+        })
+        
+      })
+      .catch((error) => {
+        setError(error.response.data.message || "Si è verificato un errore durante l'aggiunta del giocatore.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
-
   return (
     <div>
       <h1>Crea Giocatore</h1>
       {error && <p>Si è verificato un errore: {error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <label>
           Nome:
           <input
-          required
+            required
             type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            name="nome"
+            value={player.nome}
+            onChange={(e) => setPlayer({ ...player, nome: e.target.value })}
           />
         </label>
         <label>
           Cognome:
           <input
             type="text"
-            value={cognome}
-            onChange={(e) => setCognome(e.target.value)}
+            name="cognome"
+            value={player.cognome}
+            onChange={(e) => setPlayer({ ...player, cognome: e.target.value })}
           />
         </label>
         <label>
           Data di Nascita:
           <input
             type="date"
-            value={FormData.dataNascita}
-            onChange={(e) => setDataNascita(e.target.value)}
+            name="dataNascita"
+            value={player.dataNascita}
+            onChange={(e) =>
+              setPlayer({ ...player, dataNascita: e.target.value })
+            }
           />
         </label>
         <label>
           Nazionalità:
           <input
             type="text"
-            value={nazionalita}
-            onChange={(e) => setNazionalita(e.target.value)}
+            name="nazionalita"
+            value={player.nazionalita}
+            onChange={(e) =>
+              setPlayer({ ...player, nazionalita: e.target.value })
+            }
           />
         </label>
-        <label>
+         <label>
           Posizione:
-          <input
-            type="text"
-            value={posizione}
-            onChange={(e) => setPosizione(e.target.value)}
-          />
-        </label>
+          <select
+            name="posizione"
+            value={player.posizione}
+            onChange={(e) =>
+              setPlayer({ ...player, posizione: e.target.value })
+            }
+          >
+            <option value="">Seleziona...</option>
+            <option value="Attaccante">Attaccante</option>
+            <option value="Centrocampista">Centrocampista</option>
+            <option value="Difensore">Difensore</option>
+            <option value="Portiere">Portiere</option>
+          </select>
+        </label> 
         <label>
           Partite Giocate:
           <input
             type="number"
-            value={partiteGiocate}
-            onChange={(e) => setPartiteGiocate((e.target.value))}
+            name="partiteGiocate"
+            value={player.partiteGiocate}
+            onChange={(e) =>
+              setPlayer({ ...player, partiteGiocate: e.target.value })
+            }
           />
         </label>
         <label>
           Ammonizioni:
           <input
             type="number"
-            value={ammonizioni}
-            onChange={(e) => setAmmonizioni((e.target.value))}
+            name="ammonizioni"
+            value={player.ammonizioni}
+            onChange={(e) =>
+              setPlayer({ ...player, ammonizioni: e.target.value })
+            }
           />
         </label>
         <label>
           Espulsioni:
           <input
             type="number"
-            value={espulsioni}
-            onChange={(e) => setEspulsioni((e.target.value))}
+            name="espulsioni"
+            value={player.espulsioni}
+            onChange={(e) =>
+              setPlayer({ ...player, espulsioni: e.target.value })
+            }
           />
         </label>
         <label>
           Assist:
           <input
             type="number"
-            value={assist}
-            onChange={(e) => setAssist((e.target.value))}
+            name="assist"
+            value={player.assist}
+            onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
           />
         </label>
         <label>
           Gol:
           <input
             type="number"
-            value={gol}
-            onChange={(e) => setGol((e.target.value))}
+            name="gol"
+            value={player.gol}
+            onChange={(e) => setPlayer({ ...player, gol: e.target.value })}
           />
         </label>
-        <button type="submit">Aggiungi Giocatore</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Caricamento..." : "Aggiungi Giocatore"}
+        </button>
+        <Link to="/Players">Torna alla lista dei giocatori</Link>
+      </form>
+    </div>
+  );
+ 
+}
+
+ */
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+const { VITE_BACKEND_URL } = import.meta.env;
+
+export default function () {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [player, setPlayer] = useState({
+    nome: "",
+    cognome: "",
+    dataNascita: "",
+    nazionalita: "",
+    posizione: "",
+    partiteGiocate: 0,
+    ammonizioni: 0,
+    espulsioni: 0,
+    assist: 0,
+    gol: 0,
+    golSubiti: 0, // Renomina il campo per i gol subiti
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    axios
+      .post(`${VITE_BACKEND_URL}/player`, player)
+      .then(() => {
+        setPlayer({
+          nome: "",
+          cognome: "",
+          dataNascita: "",
+          nazionalita: "",
+          posizione: "",
+          partiteGiocate: 0,
+          ammonizioni: 0,
+          espulsioni: 0,
+          assist: 0,
+          gol: 0,
+          golSubiti: 0, // Resetta il campo per i gol subiti
+        });
+      })
+      .catch((error) => {
+        setError(
+          error.response.data.message ||
+            "Si è verificato un errore durante l'aggiunta del giocatore."
+        );
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  return (
+    <div>
+      <h1>Crea Giocatore</h1>
+      {error && <p>Si è verificato un errore: {error}</p>}
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <label>
+          Nome:
+          <input
+            required
+            type="text"
+            name="nome"
+            value={player.nome}
+            onChange={(e) => setPlayer({ ...player, nome: e.target.value })}
+          />
+        </label>
+
+        <label>
+          Cognome:
+          <input
+            type="text"
+            name="cognome"
+            value={player.cognome}
+            onChange={(e) => setPlayer({ ...player, cognome: e.target.value })}
+          />
+        </label>
+        <label>
+          Data di Nascita:
+          <input
+            type="date"
+            name="dataNascita"
+            value={player.dataNascita}
+            onChange={(e) =>
+              setPlayer({ ...player, dataNascita: e.target.value })
+            }
+          />
+        </label>
+        {/* Aggiunto campo per la posizione */}
+        <label>
+          Posizione:
+          <select
+            name="posizione"
+            value={player.posizione}
+            onChange={(e) => {
+              const newPosition = e.target.value;
+              // Se la nuova posizione è "Portiere", impostare il campo specifico per il portiere a vuoto
+              const goalsSubiti =
+                newPosition === "Portiere" ? 0 : player.goalSubiti;
+              setPlayer({ ...player, posizione: newPosition, goalsSubiti });
+            }}
+          >
+            <option value="">Seleziona...</option>
+            <option value="Attaccante">Attaccante</option>
+            <option value="Centrocampista">Centrocampista</option>
+            <option value="Difensore">Difensore</option>
+            <option value="Portiere">Portiere</option>
+          </select>
+        </label>
+        
+
+        <label>
+          Nazionalità:
+          <input
+            type="text"
+            name="nazionalita"
+            value={player.nazionalita}
+            onChange={(e) =>
+              setPlayer({ ...player, nazionalita: e.target.value })
+            }
+          />
+        </label>
+        <label>
+          Partite Giocate:
+          <input
+            type="number"
+            name="partiteGiocate"
+            value={player.partiteGiocate}
+            onChange={(e) =>
+              setPlayer({ ...player, partiteGiocate: e.target.value })
+            }
+          />
+        </label>
+        <label>
+          Ammonizioni:
+          <input
+            type="number"
+            name="ammonizioni"
+            value={player.ammonizioni}
+            onChange={(e) =>
+              setPlayer({ ...player, ammonizioni: e.target.value })
+            }
+          />
+        </label>
+        <label>
+          Espulsioni:
+          <input
+            type="number"
+            name="espulsioni"
+            value={player.espulsioni}
+            onChange={(e) =>
+              setPlayer({ ...player, espulsioni: e.target.value })
+            }
+          />
+        </label>
+
+        <label>
+          Assist:
+          <input
+            type="number"
+            name="assist"
+            value={player.assist}
+            onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
+          />
+        </label>
+        {/* Condizionalmente renderizza il campo per i gol solo se la posizione NON è portiere */}
+        {player.posizione !== "Portiere" && (
+          <label>
+            Gol:
+            <input
+              type="number"
+              name="gol"
+              value={player.gol}
+              onChange={(e) => setPlayer({ ...player, gol: e.target.value })}
+            />
+          </label>
+        )}
+        {/* Condizionalmente renderizza il campo specifico per il portiere */}
+        {player.posizione === "Portiere" && (
+          <label>
+            Gol Subiti:
+            <input
+              type="number"
+              name="golSubiti"
+              value={player.golSubiti}
+              onChange={(e) =>
+                setPlayer({ ...player, golSubiti: e.target.value })
+              }
+            />
+          </label>
+        )}
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Caricamento..." : "Aggiungi Giocatore"}
+        </button>
+        <Link to="/Players">Torna alla lista dei giocatori</Link>
       </form>
     </div>
   );

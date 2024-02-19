@@ -1,45 +1,46 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 const { VITE_BACKEND_URL } = import.meta.env;
 
 export default function EditPlayer() {
-    const { id } = useParams();
+  const { id } = useParams();
   const [player, setPlayer] = useState({});
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchPlayer = async () => {
-        try {
-            const response = await axios.get(`${VITE_BACKEND_URL}/player/${id}`);
-            if (response.data) {
-              setPlayer(response.data);
-            } else {
-              setError("Dati del giocatore non trovati.");
-            }
-          } catch (error) {
-            setError(error.response.data.message);
-          }
+    axios.get(`${VITE_BACKEND_URL}/player/${id}`)
+      .then(response => {
+        if (response.data) {
+          setPlayer(response.data);
+        } else {
+          setError("Dati del giocatore non trovati.");
         }
-
-    fetchPlayer();
+      })
+      .catch(error => {
+        setError(error.response.data.message || 'Si è verificato un errore durante il recupero del giocatore.');
+      });
   }, [id]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      await axios.put(`${VITE_BACKEND_URL}/player/${id}`, player);
-      // Naviga verso la lista dei giocatori dopo il salvataggio delle modifiche
-    } catch (error) {
-      setError(error.response.data.message);
-    }
+    axios.put(`${VITE_BACKEND_URL}/player/${id}`, player)
+      .then(() => {
+        // Naviga verso la lista dei giocatori dopo il salvataggio delle modifiche
+        navigate(-1);
+      })
+      .catch(error => {
+        setError(error.response?.data?.message || 'Si è verificato un errore durante il salvataggio delle modifiche.');
+      });
   };
 
-  const handleChange = (e) => {
-    setPlayer({ ...player, [e.target.name]: e.target.value });
-  };
+
+
 
   return (
     <div>
@@ -52,25 +53,7 @@ export default function EditPlayer() {
             type="text"
             name="nome"
             value={player.nome || ''}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Data di nascita:
-          <input
-            type="text"
-            name="data di nascita"
-            value={player.dataNascita || ''}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Nazionalita:
-          <input
-            type="text"
-            name="nazionalita"
-            value={player.nazionalita || ''}
-            onChange={handleChange}
+            onChange={(e) => setPlayer({ ...player, nome: e.target.value })}
           />
         </label>
         <label>
@@ -79,15 +62,35 @@ export default function EditPlayer() {
             type="text"
             name="cognome"
             value={player.cognome || ''}
-            onChange={handleChange}
+            onChange={(e) => setPlayer({ ...player, cognome: e.target.value })}
           />
         </label>
+       
+        <label>
+          Data di nascita:
+          <input
+            type="text"
+            name="data di nascita"
+            value={player.dataNascita || ''}
+            onChange={(e) => setPlayer({ ...player, dataNascita: e.target.value })}
+          />
+        </label>
+        <label>
+          Nazionalita:
+          <input
+            type="text"
+            name="nazionalita"
+            value={player.nazionalita || ''}
+            onChange={(e) => setPlayer({ ...player, nazionalitae: e.target.value })}
+          />
+        </label>
+       
         <label>
   Posizione:
   <select
     name="posizione"
     value={player.posizione || ''}
-    onChange={handleChange}
+    onChange={(e) => setPlayer({ ...player, posizione: e.target.value })}
   >
     <option value="">Seleziona...</option>
     <option value="Attaccante">Attaccante</option>
@@ -96,13 +99,68 @@ export default function EditPlayer() {
     <option value="Portiere">Portiere</option>
     {/* Aggiungi altre opzioni secondo le posizioni disponibili */}
   </select>
+  <label>
+          Ammonizioni:
+          <input
+            type="number"
+            name="ammonizioni"
+            value={player.ammonizioni|| ''}
+            onChange={(e) => setPlayer({ ...player, ammonizioni: e.target.value })}
+          />
+        </label>
+  <label>
+          Espulsioni:
+          <input
+            type="number"
+            name="espulsioni"
+            value={player.espulsioni|| ''}
+            onChange={(e) => setPlayer({ ...player, espulsioni: e.target.value })}
+          />
+        </label>
+  <label>
+        Asssist:
+          <input
+            type="number"
+            name="espulsioni"
+            value={player.assist|| ''}
+            onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
+          />
+        </label>
+
+
+         {/* Condizionalmente renderizza il campo per i gol solo se la posizione NON è portiere */}
+         {player.posizione !== "Portiere" && (
+          <label>
+            Gol:
+            <input
+              type="number"
+              name="gol"
+              value={player.gol}
+              onChange={(e) => setPlayer({ ...player, gol: e.target.value })}
+            />
+          </label>
+        )}
+
+        {/* Condizionalmente renderizza il campo specifico per il portiere */}
+        {player.posizione === "Portiere" && (
+          <label>
+            Goals Subiti:
+            <input
+              type="number"
+              name="goalsSubiti"
+              value={player.golSubiti}
+              onChange={(e) =>
+                setPlayer({ ...player, golSubiti: e.target.value })
+              }
+            />
+          </label>
+        )}
 </label>
        
         
-        {/* Altri campi del giocatore */}
+       
         <button type="submit">Salva modifiche</button>
-        {/* Link per tornare alla lista dei giocatori */}
-        <Link to="/Players">Torna alla lista dei giocatori</Link>
+        <button><Link to={`/Players/${id}/`}>Torna pagina Giocatore</Link></button>
       </form>
     </div>
   );

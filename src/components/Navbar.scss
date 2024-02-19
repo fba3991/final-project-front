@@ -1,7 +1,14 @@
-.nav-page {
+/* .nav-page {
     background-color: #333; // Cambia colore di sfondo a tuo piacimento
     color: #fff; // Cambia colore del testo a tuo piacimento
     padding: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    display: flex;
+   justify-content: center;
+   
+   
   
     ul {
       list-style: none;
@@ -27,4 +34,55 @@
       }
     }
   }
-  
+   */
+
+
+   // Navbar.scss
+
+// Navbar.scss
+
+// Navbar.scss
+
+.nav-page {
+  background-color: #333;
+  padding: 20px 0;
+
+  ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+
+      li {
+          display: inline-block;
+          margin-right: 20px;
+
+          &:last-child {
+              margin-right: 0;
+          }
+
+          a {
+              text-decoration: none;
+              color: #fff;
+              font-size: 1.6vw; // Utilizza una dimensione del testo relativa alla larghezza della viewport
+              transition: color 0.3s ease;
+
+              &:hover {
+                  color: #ffc107;
+              }
+          }
+      }
+  }
+
+  // Regole per rendere il menu responsive
+  @media screen and (max-width: 768px) {
+      ul {
+          li {
+              display: block; // Trasforma gli elementi in blocchi per impilarli verticalmente
+              margin-bottom: 10px; // Aggiunge spaziatura tra gli elementi del menu
+          }
+      }
+  }
+}
+
+

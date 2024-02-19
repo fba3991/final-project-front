@@ -1,0 +1,26 @@
+// Home.scss
+
+.home-page {
+    height: 100vh;
+    
+    background-image: url("/homepage.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    h1 {
+        font-size: 6vw; // Utilizza una dimensione del testo relativa alla larghezza della viewport
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    // Regole per rendere l'immagine di sfondo responsive
+    @media screen and (max-width: 768px) {
+        background-size: contain; // Contiene l'immagine senza distorsioni
+    }
+}
+
+
