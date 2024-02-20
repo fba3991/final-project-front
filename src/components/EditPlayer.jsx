@@ -10,6 +10,7 @@ export default function EditPlayer() {
   const { id } = useParams();
   const [player, setPlayer] = useState({});
   const [error, setError] = useState('');
+  const [loading, setLoading]= useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -97,7 +98,6 @@ export default function EditPlayer() {
     <option value="Centrocampista">Centrocampista</option>
     <option value="Difensore">Difensore</option>
     <option value="Portiere">Portiere</option>
-    {/* Aggiungi altre opzioni secondo le posizioni disponibili */}
   </select>
   <label>
           Ammonizioni:
@@ -128,7 +128,7 @@ export default function EditPlayer() {
         </label>
 
 
-         {/* Condizionalmente renderizza il campo per i gol solo se la posizione NON è portiere */}
+         {/* Condizione cge renderizza il campo per i gol solo se la posizione non è portiere */}
          {player.posizione !== "Portiere" && (
           <label>
             Gol:
@@ -141,7 +141,7 @@ export default function EditPlayer() {
           </label>
         )}
 
-        {/* Condizionalmente renderizza il campo specifico per il portiere */}
+        {/* Condizione che renderizza il campo specifico per il portiere */}
         {player.posizione === "Portiere" && (
           <label>
             Goals Subiti:

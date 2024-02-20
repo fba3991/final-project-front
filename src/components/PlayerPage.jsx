@@ -204,6 +204,7 @@ export default function PlayerPage() {
         <>
           {error && <p>Si è verificato un errore: {error}</p>}
           <ul>
+            <img src={player.immagine} />
             <li>Nome: {player.nome}</li>
             <li>Cognome: {player.cognome}</li>
             <li>Data di Nascita: {player.dataNascita}</li>
@@ -217,9 +218,9 @@ export default function PlayerPage() {
             {player.posizione !== "Portiere" && <li>Gol: {player.gol}</li>}
 
           </ul>
-          <button onClick={handleDeletePlayer}>Elimina Giocatore</button>
-          <button><Link to={`/Players/${id}/edit`}>Modifica Giocatore</Link></button>
-          <button> <Link to="/Players">Torna alla lista dei giocatori</Link>  </button>
+          <button className='button-handle' onClick={handleDeletePlayer}>Elimina Giocatore</button>
+          <button className='button-edit'><Link to={`/Players/${id}/edit`}>Modifica Giocatore</Link></button>
+          <button className='button-list'> <Link to="/Players">Torna alla lista dei giocatori</Link>  </button>
           
        
         </>
@@ -227,3 +228,6 @@ export default function PlayerPage() {
     </div>
   );
 }
+
+
+

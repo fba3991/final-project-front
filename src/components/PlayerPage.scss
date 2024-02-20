@@ -1,85 +1,80 @@
-// PlayerPage.scss
-
 .PlayerPage {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f2f2f2;
   
     h1 {
-      margin-bottom: 20px;
-      font-size: 24px;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
       color: #333;
     }
   
     ul {
-      list-style-type: none;
-      padding: 0;
+      list-style: none;
       margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+  
+      li {
+        flex-basis: calc(33.333% - 2rem);
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+  
+        &:hover {
+          transform: translateY(-5px);
+        }
+  
+        img {
+          width: 100%;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+        }
+  
+        &:nth-child(even) {
+          background-color: #f5f5f5;
+        }
+      }
     }
   
-    li {
-      margin-bottom: 10px;
-    }
-  
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
+    .button-handle {
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
       border: none;
       border-radius: 5px;
-      background-color: #ff6347;
+      background-color: #ff3838;
       color: #fff;
-      font-size: 16px;
-      text-decoration: none;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-right: 10px;
+      transition: background-color 0.3s ease-in-out;
   
       &:hover {
-        background-color: #d63031;
+        background-color: #f01d1d;
       }
     }
   
-    .button-secondary {
-      background-color: #6c5ce7;
+    .button-edit,
+    .button-list {
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #2e7d32;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
   
       &:hover {
-        background-color: #4834d4;
+        background-color: #1b5e20;
       }
-    }
-  
-    .button-danger {
-      background-color: #ff4757;
-  
-      &:hover {
-        background-color: #ff0033;
-      }
-    }
-  
-    .button-link {
-      background-color: transparent;
-      color: #333;
-  
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  
-    .error {
-      color: #ff6347;
-      margin-top: 10px;
-    }
-  
-    .loading {
-      margin-top: 20px;
-      text-align: center;
-      color: #333;
     }
   }
-  
-
-
-  

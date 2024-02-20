@@ -157,10 +157,10 @@ export default function PlayersList() {
         <>
           {error && <p className="error-message">Si è verificato un errore: {error}</p>}
           <ul>
-            {players.map((player) => (
+            {players.map((player,i) => (
               <li key={player._id}>
                 <Link to={`/Players/${player._id}`}>
-                  <img src={player.immagine} alt="Immagine giocatore" />
+                <img src={player.immagine}  />
                   <div className="player-info">
                     <div>Nome: {player.nome}</div>
                     <div>Cognome: {player.cognome}</div>
