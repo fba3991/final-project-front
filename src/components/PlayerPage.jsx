@@ -228,6 +228,3 @@ export default function PlayerPage() {
     </div>
   );
 }
-
-
-

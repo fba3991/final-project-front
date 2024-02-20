@@ -121,7 +121,6 @@ export default function PlayersList() {
 
 
 // PlayersList.jsx
-
 import axios from '/axios/axiosConfig';
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom';
