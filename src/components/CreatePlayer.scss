@@ -1,0 +1,122 @@
+// CreatePlayer.scss
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.create-player-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #0e65bc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-weight: 700;
+  }
+
+  form {
+    display: grid;
+    grid-gap: 20px;
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+      color: #555;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      color: #333;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+
+    p {
+      color: red;
+      margin-top: 10px;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .create-player-container {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .create-player-container {
+    max-width: 400px;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .create-player-container {
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  form {
+    label {
+      font-size: 0.9em;
+    }
+
+    input,
+    select {
+      font-size: 0.9em;
+    }
+
+    button {
+      font-size: 0.9em;
+    }
+  }
+}
+
+
+
+
+
+  

@@ -1,18 +1,18 @@
-
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import "./CreatePlayer.scss"
+
 const { VITE_BACKEND_URL } = import.meta.env;
 
-
-export default function () {
+export default function CreatePlayer() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [player, setPlayer] = useState({
     nome: "",
     cognome: "",
-    dataNascita: dayjs().format("YYYY-MM-DD"), // Imposta la data di nascita a oggi come default  });
+    dataNascita: dayjs().format("YYYY-MM-DD"),
     nazionalita: "",
     posizione: "",
     partiteGiocate: "",
@@ -20,20 +20,17 @@ export default function () {
     espulsioni: 0,
     assist: 0,
     gol: 0,
-    golSubiti: 0, 
+    golSubiti: 0,
   });
-  
 
-  // gestione per l'invio del form
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
- 
-    
+
     axios
       .post(`${VITE_BACKEND_URL}/player`, player)
       .then(() => {
-       setPlayer({// Resetta il campo al click del bottone.
+        setPlayer({
           nome: "",
           cognome: "",
           dataNascita: "",
@@ -44,8 +41,8 @@ export default function () {
           espulsioni: 0,
           assist: 0,
           gol: 0,
-          golSubiti: 0, 
-        }); 
+          golSubiti: 0,
+        });
       })
       .catch((error) => {
         setError(
@@ -59,10 +56,10 @@ export default function () {
   };
 
   return (
-    <div>
-      <h1>Crea Giocatore</h1>
+    <div className="create-player-container">
+      <h1>Crea il giocatore</h1>
       {error && <p>Si è verificato un errore: {error}</p>}
-      <form onSubmit={ handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>
           Nome:
           <input
@@ -77,17 +74,18 @@ export default function () {
         <label>
           Cognome:
           <input
-          required
+            required
             type="text"
             name="cognome"
             value={player.cognome}
             onChange={(e) => setPlayer({ ...player, cognome: e.target.value })}
           />
         </label>
+
         <label>
           Data di Nascita:
           <input
-          required
+            required
             type="date"
             name="dataNascita"
             value={player.dataNascita}
@@ -96,17 +94,16 @@ export default function () {
             }
           />
         </label>
-        {/* Aggiunto campo per la posizione */}
+
         <label>
           Posizione:
           <select
-          required
+            required
             name="posizione"
             value={player.posizione}
-            onChange={(e) => { setPlayer({ ...player, posizione: e.target.value});
-            }}
-            
-             
+            onChange={(e) =>
+              setPlayer({ ...player, posizione: e.target.value })
+            }
           >
             <option value="">Seleziona...</option>
             <option value="Attaccante">Attaccante</option>
@@ -115,12 +112,11 @@ export default function () {
             <option value="Portiere">Portiere</option>
           </select>
         </label>
-        
 
         <label>
           Nazionalità:
           <input
-          required
+            required
             type="text"
             name="nazionalita"
             value={player.nazionalita}
@@ -129,6 +125,7 @@ export default function () {
             }
           />
         </label>
+
         <label>
           Partite Giocate:
           <input
@@ -140,6 +137,7 @@ export default function () {
             }
           />
         </label>
+
         <label>
           Ammonizioni:
           <input
@@ -151,6 +149,7 @@ export default function () {
             }
           />
         </label>
+
         <label>
           Espulsioni:
           <input
@@ -172,7 +171,7 @@ export default function () {
             onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
           />
         </label>
-        {/* Condizione che  renderizza il campo per i gol solo se la posizione non è portiere */}
+
         {player.posizione !== "Portiere" && (
           <label>
             Gol:
@@ -184,7 +183,7 @@ export default function () {
             />
           </label>
         )}
-        {/* condizione renderizza il campo specifico per il portiere */}
+
         {player.posizione === "Portiere" && (
           <label>
             Gol Subiti:
@@ -203,9 +202,8 @@ export default function () {
           {loading ? "Caricamento..." : "Aggiungi Giocatore"}
         </button>
         <button>
-           <Link to="/Players">Torna alla lista dei giocatori</Link>
+          <Link to="/Players">Torna alla lista dei giocatori</Link>
         </button>
-       
       </form>
     </div>
   );
