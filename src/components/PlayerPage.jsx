@@ -49,7 +49,7 @@ export default function PlayerPage() {
         <>
           {error && <p>Si è verificato un errore: {error}</p>}
           <ul>
-            <img src={player.immagine} />
+            <img src={player.immagine} alt="" />
             <li>Nome: {player.nome}</li>
             <li>Cognome: {player.cognome}</li>
             <li>Data di Nascita: {player.dataNascita}</li>

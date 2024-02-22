@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
-import "./CreatePlayer.scss"
+import "./CreatePlayer.scss";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -12,7 +12,7 @@ export default function CreatePlayer() {
   const [player, setPlayer] = useState({
     nome: "",
     cognome: "",
-    dataNascita: dayjs().format("YYYY-MM-DD"),
+    dataNascita: "",
     nazionalita: "",
     posizione: "",
     partiteGiocate: "",
@@ -54,11 +54,18 @@ export default function CreatePlayer() {
         setLoading(false);
       });
   };
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    // Verifica se il valore contiene solo lettere
+    if (/^[A-Za-z]+$/.test(value) || value === "") {
+      setPlayer({ ...player, [name]: value });
+    }
+  };
   return (
     <div className="create-player-container">
       <h1>Crea il giocatore</h1>
-      {error && <p>Si è verificato un errore: {error}</p>}
+      {error && <p> {error}</p>}
+
       <form onSubmit={handleSubmit}>
         <label>
           Nome:
@@ -67,7 +74,7 @@ export default function CreatePlayer() {
             type="text"
             name="nome"
             value={player.nome}
-            onChange={(e) => setPlayer({ ...player, nome: e.target.value })}
+            onChange={handleChange}
           />
         </label>
 
@@ -78,7 +85,7 @@ export default function CreatePlayer() {
             type="text"
             name="cognome"
             value={player.cognome}
-            onChange={(e) => setPlayer({ ...player, cognome: e.target.value })}
+            onChange={handleChange}
           />
         </label>
 
@@ -120,12 +127,9 @@ export default function CreatePlayer() {
             type="text"
             name="nazionalita"
             value={player.nazionalita}
-            onChange={(e) =>
-              setPlayer({ ...player, nazionalita: e.target.value })
-            }
+            onChange={handleChange}
           />
         </label>
-
         <label>
           Partite Giocate:
           <input
