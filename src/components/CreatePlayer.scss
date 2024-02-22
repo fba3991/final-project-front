@@ -1,14 +1,29 @@
-// CreatePlayer.scss
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 
 .create-player-container {
-  max-width: 600px;
+   margin: 0;
+  padding: 0;
+  background-image: url('/public/sfondo-list.png');
+  background-size: cover; 
+  background-position: center; 
+  font-family: 'Roboto', sans-serif; 
+
+  
+  color: #333;
+   
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #0e65bc;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+ 
+}
+.crea{
+  color: blue;
+  margin-bottom: 20px;
+}
+
+ 
 
   h1 {
     text-align: center;
@@ -32,19 +47,15 @@
     input,
     select {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 50px;
       box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
       font-size: 16px;
-      color: #333;
-      transition: border-color 0.3s;
+      color: #861111;
+     
 
-      &:focus {
-        outline: none;
-        border-color: #007bff;
-      }
     }
 
     button {
@@ -77,6 +88,10 @@
       font-family: 'Roboto', sans-serif;
     }
   }
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media screen and (max-width: 1199px) {

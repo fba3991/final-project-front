@@ -8,6 +8,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 
 export default function CreatePlayer() {
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [player, setPlayer] = useState({
     nome: "",
@@ -22,14 +23,24 @@ export default function CreatePlayer() {
     gol: 0,
     golSubiti: 0,
   });
+  
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
+    const playerAge = dayjs().diff(player.dataNascita, 'year');
+    if (playerAge < 15) {
+      setError('Il giocatore deve avere almeno 15 anni.');
+      setLoading(false);
+      return;
+    }
+
     axios
       .post(`${VITE_BACKEND_URL}/player`, player)
       .then(() => {
+        setSuccessMessage("Giocatore creato con successo!");
         setPlayer({
           nome: "",
           cognome: "",
@@ -49,22 +60,36 @@ export default function CreatePlayer() {
           error.response.data.message ||
             "Si è verificato un errore durante l'aggiunta del giocatore."
         );
+        setSuccessMessage("");
       })
       .finally(() => {
         setLoading(false);
       });
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Verifica se il valore contiene solo lettere
-    if (/^[A-Za-z]+$/.test(value) || value === "") {
+    // Verifica se il valore contiene solo lettere o spazi
+    if (/^[A-Za-z ]*$/.test(value) || value === "") {
       setPlayer({ ...player, [name]: value });
     }
   };
+
+  
+  const handleDateChange = (e) => {
+    const { name, value } = e.target;
+    // Verifica se la data è nel formato corretto (YYYY-MM-DD)
+    if (dayjs(value, "YYYY-MM-DD").isValid() || value === "") {
+      setPlayer({ ...player, [name]: value });
+    }
+  };
+  
   return (
     <div className="create-player-container">
-      <h1>Crea il giocatore</h1>
-      {error && <p> {error}</p>}
+      <h1 className="crea">Crea il giocatore</h1>
+      {error && <p className="error-message">{error}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -75,6 +100,8 @@ export default function CreatePlayer() {
             name="nome"
             value={player.nome}
             onChange={handleChange}
+            maxLength={20}
+            
           />
         </label>
 
@@ -86,6 +113,7 @@ export default function CreatePlayer() {
             name="cognome"
             value={player.cognome}
             onChange={handleChange}
+            maxLength={30}
           />
         </label>
 
@@ -96,9 +124,8 @@ export default function CreatePlayer() {
             type="date"
             name="dataNascita"
             value={player.dataNascita}
-            onChange={(e) =>
-              setPlayer({ ...player, dataNascita: e.target.value })
-            }
+            onChange={handleDateChange}
+         /*    {(e)=> setPlayer({...player, dataNascita:e.target.value})} */
           />
         </label>
 
@@ -128,6 +155,7 @@ export default function CreatePlayer() {
             name="nazionalita"
             value={player.nazionalita}
             onChange={handleChange}
+            maxLength={30}
           />
         </label>
         <label>
