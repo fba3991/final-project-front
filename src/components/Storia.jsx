@@ -1,11 +1,12 @@
 import "./Storia.scss";
-export default function () {
+import { Link } from 'react-router-dom';
+
+export default function Storia() {
   return (
-   <div >
+    <div>
       <section className="storia-page"></section>
       <div className="content">
         <p>
-          {" "}
           Dal 1957, il Salotto FC ha tessuto una storia di passione,
           determinazione e orgoglio calcistico nel cuore della nostra comunità.
           Fondato da un gruppo di amici con una palla e un sogno condiviso, il
@@ -36,11 +37,26 @@ export default function () {
           venire.
         </p>
       </div>
-      
-      <div className="fondatori">
-        <h3>Fondatori</h3>
-      </div>
-      
-   </div>  
+      <footer className="footer">
+        <div className="footer-content">
+          <div>
+            <h3>Salotto FC</h3>
+            <p>Indirizzo: Via del Calcio, 123</p>
+            <p>Città: Calcioville</p>
+            <p>Telefono: 0123456789</p>
+          </div>
+          <div>
+            <h3>Link utili</h3>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/Players">Squadra</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 Salotto FC. Tutti i diritti riservati.</p>
+        </div>
+      </footer>
+    </div>
   );
 }

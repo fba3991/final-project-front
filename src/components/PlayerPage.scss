@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.player-image{
+.player-image {
   width: 200px; /* Imposta la larghezza desiderata */
   height: 200px; /* Imposta l'altezza desiderata */
   object-fit: cover; /* Scala e ritaglia l'immagine per adattarla al riquadro */
@@ -8,6 +8,7 @@
   margin: 0 auto; /* Centra l'immagine orizzontalmente */
   margin-bottom: 1rem; /* Aggiungi spazio inferiore */
 }
+
 .PlayerPage {
   display: flex;
   flex-direction: column;
@@ -18,7 +19,6 @@
   background-position: center; /* Centra l'immagine */
   background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
   background-color: #f2f2f2;
-
 
   h1 {
     font-size: 2.5rem;
@@ -53,15 +53,18 @@
         border-radius: 10px;
         margin-bottom: 1rem;
       }
-
-      
     }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
   }
 
   .button-handle,
   .button-edit,
   .button-list {
-    margin-top: 2rem;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
@@ -82,19 +85,18 @@
   .button-handle {
     background-color: #000000;
     color: #fff;
-    margin-right: 3rem; /* Aggiungi spazio tra i bottoni */
-    margin-left:  20rem;
+    margin-right: 1rem; /* Spazio tra i bottoni */
   }
 
   .button-edit,
   .button-list {
     background-color: #000000;
     color: #fff;
-    margin-right: 2rem;
+    margin-right: 1rem; /* Spazio tra i bottoni */
   }
 }
-/* Stili per schermi fino a 600px (telefoni) */
 
+/* Stili per schermi fino a 600px (telefoni) */
 @media (max-width: 600px) {
   .PlayerPage {
     padding: 1rem;

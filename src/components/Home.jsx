@@ -38,7 +38,7 @@ export default function () {
       </div>
       <div className="third-page">
       <button className="button-container2">
-      <Link to="/Players/create">Crea La Tua Squadra</Link>
+      <Link to="/Players/create">Crea Il Giocatore</Link>
         </button>
       </div>
       <footer className="footer">

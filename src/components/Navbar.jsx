@@ -21,7 +21,7 @@ export default function Navbar() {
           <li>
             <Link to="/Players/create">Crea Giocatore</Link>
           </li>
-          <li>
+          <li className="storia-link">
             <Link to="/Storia">Storia Squadra</Link>
           </li>
         </ul>

@@ -9,7 +9,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  h1{
+    color: #484747;
+  }
 }
+  
+
 
 .second-page {
   display: flex;
@@ -73,7 +79,7 @@
 
 /* Stili specifici per diverse dimensioni di schermo utilizzando media query */
 @media only screen and (max-width: 600px) {
-  /* Stili per dispositivi con larghezza massima di 600px (es. telefoni) */
+
   .home-page h1 {
     font-size: 10vw;
     margin-bottom: 110px;
@@ -86,7 +92,7 @@
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
-  /* Stili per dispositivi con larghezza compresa tra 601px e 1024px (es. iPad) */
+
   .home-page h1 {
     font-size: 8vw;
     margin-bottom: 150px;
