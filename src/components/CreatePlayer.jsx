@@ -178,6 +178,7 @@ export default function CreatePlayer() {
             onChange={(e) =>
               setPlayer({ ...player, partiteGiocate: e.target.value })
             }
+            max={100}
           />
         </label>
 
