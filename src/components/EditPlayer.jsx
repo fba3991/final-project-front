@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./EditPlayer.scss";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -22,7 +24,7 @@ export default function EditPlayer() {
     golSubiti: 0, // assuming this is a field for goalkeepers
   });
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading]= useState("")
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,6 +47,14 @@ export default function EditPlayer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+   
+    const playerAge = dayjs().diff(player.dataNascita, 'year');
+    if (playerAge < 15) {
+      setError('Il giocatore deve avere almeno 15 anni.');
+      setLoading(false);
+      return;
+    }
 
     axios
       .put(`${VITE_BACKEND_URL}/player/${id}`, player)
@@ -54,7 +64,7 @@ export default function EditPlayer() {
       })
       .catch((error) => {
         setError(
-          error.response?.data?.message ||
+          error.response.data.message ||
             "Si è verificato un errore durante il salvataggio delle modifiche."
         );
       });
@@ -68,36 +78,41 @@ export default function EditPlayer() {
     }
   };
 
+    
+  
+
   return (
-    <div>
+    <div className="EditPlayer">
       <h1>Modifica Giocatore</h1>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Nome:
           <input
-           
+             required
             type="text"
             name="nome"
             value={player.nome}
             onChange={handleChange}
+            maxLength={20}
           />
         </label>
         <label>
           Cognome:
           <input
-           
+           required
             type="text"
             name="cognome"
             value={player.cognome}
             onChange={handleChange}
+            maxLength={20}
           />
         </label>
 
         <label>
           Data di nascita:
           <input
-            type="text"
+            type="date"
             name="data di nascita"
             value={player.dataNascita || ""}
             onChange={(e) =>
@@ -108,11 +123,12 @@ export default function EditPlayer() {
         <label>
           Nazionalita:
           <input
-           
+           required
             type="text"
             name="nazionalita"
             value={player.nazionalita}
             onChange={handleChange}
+            maxLength={20}
           />
         </label>
 

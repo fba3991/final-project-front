@@ -1,137 +1,173 @@
+// Variabili
+$primary-color: #38bd0b;
+$secondary-color: #9b3434;
+$background-color: #f2f2f2;
+$error-color: red;
 
-
-
+// Stile generale della pagina
 .create-player-container {
-   margin: 0;
-  padding: 0;
-  background-image: url('/public/sfondo-list.png');
-  background-size: cover; 
-  background-position: center; 
-  font-family: 'Roboto', sans-serif; 
-
-  
-  color: #333;
-   
-  max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 20px;
-  border-radius: 50px;
- 
-}
-.crea{
-  color: blue;
-  margin-bottom: 20px;
+  max-width: 100%;
+  background-image: url('/public/edit-player.png');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Roboto', sans-serif;
+  color: #f6f1f1;
+  text-align: center; /* Aggiunto per centrare i contenuti */
 }
 
- 
+// Titolo
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-weight: 700;
+  color: #000000;
+}
 
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
+// Form
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto; /* Aggiunto per centrare il form */
+  max-width: 400px; /* Aggiunto per evitare che il form sia troppo largo su schermi grandi */
+
+  label {
+    display: block;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: $primary-color;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
     font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
   }
 
-  form {
-    display: grid;
-    grid-gap: 20px;
-
-    label {
-      display: block;
-      font-weight: bold;
-      font-family: 'Roboto', sans-serif;
-      color: #555;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 50px;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      color: #861111;
-     
-
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      text-transform: uppercase;
-
-      &:hover {
-        background-color: #0056b3;
-      }
-
-      &:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-    }
-
-    p {
-      color: red;
-      margin-top: 10px;
-      font-family: 'Roboto', sans-serif;
-    }
+  p {
+    color: $error-color;
+    margin-top: 10px;
   }
+}
 
 a {
   text-decoration: none;
   color: inherit;
 }
 
-@media screen and (max-width: 1199px) {
-  .create-player-container {
-    max-width: 500px;
-  }
-}
 
-@media screen and (max-width: 991px) {
-  .create-player-container {
-    max-width: 400px;
-    padding: 15px;
-  }
-}
 
-@media screen and (max-width: 767px) {
+// Media queries
+@media only screen and (max-width: 600px) {
+  $small-padding: 10px;
+  $small-font-size: 12px;
+
   .create-player-container {
-    max-width: 100%;
-    border-radius: 0;
-    box-shadow: none;
+    padding: $small-padding;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-top: 20px;
   }
 
   form {
-    label {
-      font-size: 0.9em;
-    }
+    width: 80%;
+  }
 
-    input,
-    select {
-      font-size: 0.9em;
-    }
-
-    button {
-      font-size: 0.9em;
-    }
+  input,
+  select {
+    font-size: $small-font-size;
   }
 }
 
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  $medium-padding: 15px;
+  $medium-font-size: 14px;
 
+  .create-player-container {
+    padding: $medium-padding;
+  }
 
+  h1 {
+    font-size: 28px;
+    margin-top: 30px;
+  }
 
+  form {
+    width: 70%;
+  }
 
-  
+  input,
+  select {
+    font-size: $medium-font-size;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  $large-padding: 20px;
+  $large-font-size: 16px;
+
+  .create-player-container {
+    padding: $large-padding;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-top: 40px;
+  }
+
+  form {
+    width: 60%;
+  }
+
+  input,
+  select {
+    font-size: $large-font-size;
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  $extra-large-padding: 30px;
+  $extra-large-font-size: 18px;
+
+  .create-player-container {
+    padding: $extra-large-padding;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-top: 50px;
+  }
+
+  form {
+    width: 50%;
+  }
+
+  input,
+  select {
+    font-size: $extra-large-font-size;
+  }
+}
+

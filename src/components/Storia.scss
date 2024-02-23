@@ -1,0 +1,51 @@
+
+.storia-page {
+    height: 60vh;
+    background-image: url("/public/storia-page.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+/* Media query per dispositivi di dimensioni simili a smartphone */
+@media only screen and (max-width: 600px) {
+    .content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Media query per dispositivi di dimensioni simili a tablet */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .content {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+/* Media query per dispositivi di dimensioni simili a laptop */
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    .content {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+/* Media query per dispositivi di dimensioni simili a schermi TV */
+@media only screen and (min-width: 1441px) {
+    .content {
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+}

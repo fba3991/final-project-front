@@ -1,81 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.player-image{
+  width: 200px; /* Imposta la larghezza desiderata */
+  height: 200px; /* Imposta l'altezza desiderata */
+  object-fit: cover; /* Scala e ritaglia l'immagine per adattarla al riquadro */
+  display: block; /* Assicurati che l'immagine sia un blocco per poter centrare facilmente */
+  margin: 0 auto; /* Centra l'immagine orizzontalmente */
+  margin-bottom: 1rem; /* Aggiungi spazio inferiore */
+}
 .PlayerPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-image: url('/public/back-list.png');
+  background-size: cover; /* Scala l'immagine per coprire l'intera area */
+  background-position: center; /* Centra l'immagine */
+  background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+  background-color: #f2f2f2;
+
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #000000;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    background-color: #f2f2f2;
-  
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-  
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-  
-      li {
-        flex-basis: calc(33.333% - 2rem);
-        background-color: #fff;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    li {
+      flex-basis: calc(33.33% - 2rem);
+      background-color: #fff;
+      border-radius: 50px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      img {
+        width: 0px;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 1.5rem;
-        text-align: center;
-        transition: transform 0.3s ease-in-out;
-  
-        &:hover {
-          transform: translateY(-5px);
-        }
-  
-        img {
-          width: 100%;
-          border-radius: 10px;
-          margin-bottom: 1rem;
-        }
-  
-        &:nth-child(even) {
-          background-color: #f5f5f5;
-        }
+        margin-bottom: 1rem;
       }
-    }
-  
-    .button-handle {
-      margin-top: 2rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      background-color: #ff3838;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-  
-      &:hover {
-        background-color: #f01d1d;
-      }
-    }
-  
-    .button-edit,
-    .button-list {
-      margin-top: 2rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      background-color: #2e7d32;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-  
-      &:hover {
-        background-color: #1b5e20;
-      }
+
+      
     }
   }
-  
+
+  .button-handle,
+  .button-edit,
+  .button-list {
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .button-handle {
+    background-color: #000000;
+    color: #fff;
+    margin-right: 3rem; /* Aggiungi spazio tra i bottoni */
+    margin-left:  20rem;
+  }
+
+  .button-edit,
+  .button-list {
+    background-color: #000000;
+    color: #fff;
+    margin-right: 2rem;
+  }
+}
+/* Stili per schermi fino a 600px (telefoni) */
+
+@media (max-width: 600px) {
+  .PlayerPage {
+    padding: 1rem;
+  }
+
+  ul li {
+    flex-basis: calc(100% - 2rem); /* Visualizza un singolo elemento a larghezza completa */
+  }
+}
+
+/* Stili per schermi fino a 768px (iPad in modalità portrait) */
+@media (max-width: 768px) {
+  .PlayerPage {
+    padding: 1.5rem;
+  }
+
+  ul li {
+    flex-basis: calc(50% - 1rem); /* 2 colonne invece di 3 */
+  }
+}
+
+/* Stili per schermi fino a 1024px (iPad in modalità landscape) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .PlayerPage {
+    padding: 2rem;
+  }
+}
+
+/* Stili per schermi da 1025px a 1440px (laptop) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .PlayerPage {
+    padding: 2rem;
+  }
+
+  ul li {
+    flex-basis: calc(33.33% - 2rem); /* Ripristina le 3 colonne */
+  }
+}
+
+/* Stili per schermi oltre 1440px (schermi TV e desktop molto larghi) */
+@media (min-width: 1441px) {
+  .PlayerPage {
+    padding: 3rem;
+  }
+
+  ul li {
+    flex-basis: calc(25% - 2rem); /* Mostra 4 colonne */
+  }
+}

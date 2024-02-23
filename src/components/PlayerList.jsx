@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import "./PlayerList.scss"
 const { VITE_BACKEND_URL } = import.meta.env;
 
+
 export default function PlayersList() {
   const [players, setPlayers] = useState([]);
   const [error, setError] = useState();
@@ -27,29 +28,34 @@ export default function PlayersList() {
   }, []);
 
   return (
-    <div className="players-list-container">
-      <h1>Lista Giocatori</h1>
+   
+      <div className="players-list-container">
+      <h1>Rosa</h1>
       {isLoading ? (
         <p className="loading-text">Caricamento...</p>
       ) : (
         <>
           {error && <p className="error-message">Si è verificato un errore: {error}</p>}
           <ul>
-            {players.map((player,i) => (
-              <li key={player._id}>
-                <Link to={`/Players/${player._id}`}>
-                <img src={player.immagine} alt="foto calciatore" />
-                  <div className="player-info">
-                    <div>Nome: {player.nome}</div>
-                    <div>Cognome: {player.cognome}</div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+  {players.map((player,i) => (
+    <li key={player._id} className="player-card">
+      <Link to={`/Players/${player._id}`}>
+        <div className="player-info">
+          <div>Nome: {player.nome}</div>
+          <div>Cognome: {player.cognome}</div>
+        </div>
+        <img src="/immagine-calciatore.png" alt="foto profilo" className='player-image' />
+      </Link>
+    </li>
+  ))}
+</ul>
         </>
       )}
+      
     </div>
+    
+    
+    
   );
 }
 

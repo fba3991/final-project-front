@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+// Variabili
+$primary-color: #38bd0b;
+$secondary-color: #9b3434;
+$error-color: red;
+
+// Stile generale della pagina
+.EditPlayer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-image: url('/public/edit-player.png');
+  background-size: cover; 
+  background-position: center; 
+  font-family: 'Roboto', sans-serif;
+  color: #f6f1f1;
+
+  h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  form {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    background-color:transparent; // Trasparenza per rendere leggibile il testo sull'immagine di sfondo
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #030000;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      color: #333;
+    }
+
+    button {
+      width: 34%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: $primary-color;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+
+    p {
+      color: $error-color;
+      margin-top: 10px;
+    }
+  }
+
+  // Media query per telefoni
+  @media only screen and (max-width: 600px) {
+    padding: 1rem;
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    form {
+      padding: 15px;
+      max-width: 100%;
+    }
+  }
+
+  // Media query per iPad
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    padding: 1.5rem;
+
+    h1 {
+      margin-top: 30px;
+    }
+
+    form {
+      padding: 20px;
+      max-width: 80%;
+    }
+  }
+
+  // Media query per laptop
+  @media only screen and (min-width: 1025px) and (max-width: 1440px) {
+    padding: 2rem;
+
+    h1 {
+      margin-top: 40px;
+    }
+
+    form {
+      padding: 25px;
+      max-width: 60%;
+    }
+  }
+
+  // Media query per schermi TV
+  @media only screen and (min-width: 1441px) {
+    padding: 3rem;
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    form {
+      padding: 30px;
+      max-width: 50%;
+    }
+  }
+}

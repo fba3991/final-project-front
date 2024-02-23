@@ -42,34 +42,34 @@ export default function PlayerPage() {
 
   return (
     <div className='PlayerPage'>
-      <h1>Dettagli Giocatore</h1>
-      {isLoading ? (
-        <p>Caricamento...</p>
-      ) : (
-        <>
-          {error && <p>Si è verificato un errore: {error}</p>}
-          <ul>
-            <img src={player.immagine} alt="" />
-            <li>Nome: {player.nome}</li>
-            <li>Cognome: {player.cognome}</li>
-            <li>Data di Nascita: {player.dataNascita}</li>
-            <li>Nazionalità: {player.nazionalita}</li>
-            <li>Posizione: {player.posizione}</li>
-            <li>Partite Giocate: {player.partiteGiocate}</li>
-            <li>Ammonizioni: {player.ammonizioni}</li>
-            <li>Espulsioni: {player.espulsioni}</li>
-            <li>Assist: {player.assist}</li>
-            {player.posizione === "Portiere" && <li>Gol Subiti: {player.golSubiti}</li>}
-            {player.posizione !== "Portiere" && <li>Gol: {player.gol}</li>}
-
-          </ul>
-          <button className='button-handle' onClick={handleDeletePlayer}>Elimina Giocatore</button>
-          <button className='button-edit'><Link to={`/Players/${id}/edit`}>Modifica Giocatore</Link></button>
-          <button className='button-list'> <Link to="/Players">Torna alla lista dei giocatori</Link>  </button>
-          
-       
-        </>
-      )}
-    </div>
+  <h1>Dettagli Giocatore</h1>
+  {isLoading ? (
+    <p>Caricamento...</p>
+  ) : (
+    <>
+      {error && <p>Si è verificato un errore: {error}</p>}
+      <div className='player-card'>
+         <img src="/immagine-calciatore.png" alt="foto profilo" className='player-image' />
+        <ul>
+          <li>Nome: {player.nome}</li>
+          <li>Cognome: {player.cognome}</li>
+          <li>Data di Nascita: {player.dataNascita}</li>
+          <li>Nazionalità: {player.nazionalita}</li>
+          <li>Posizione: {player.posizione}</li>
+          <li>Partite Giocate: {player.partiteGiocate}</li>
+          <li>Ammonizioni: {player.ammonizioni}</li>
+          <li>Espulsioni: {player.espulsioni}</li>
+          <li>Assist: {player.assist}</li>
+          {player.posizione === "Portiere" && <li>Gol Subiti: {player.golSubiti}</li>}
+          {player.posizione !== "Portiere" && <li>Gol: {player.gol}</li>}
+        </ul>
+        <button className='button-handle' onClick={handleDeletePlayer}>Elimina Giocatore</button>
+        <button className='button-edit'><Link to={`/Players/${id}/edit`}>Modifica Giocatore</Link></button>
+        <button className='button-list'> <Link to="/Players">Torna alla lista dei giocatori</Link>  </button>
+      </div>
+      
+    </>
+  )}
+</div>
   );
 }

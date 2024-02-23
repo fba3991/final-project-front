@@ -1,58 +1,95 @@
-// Navbar.scss
+// Variabili
+$navbar-bg-color: rgba(19, 19, 19, 0.9);
+$team-name-color: #c82c2c;
+$menu-link-color: #a42121;
+$menu-margin-left: 20%; // Larghezza dinamica del menu
 
+// Stile della barra di navigazione
 .nav-page {
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+  background-color: $navbar-bg-color;
+  padding: 10px 20px;
+  height: 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  .logo img {
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 20px;
   }
   
-  .nav-page ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  .team-name {
+    color: $team-name-color;
+    font-size: 18px;
+    font-weight: bold;
   }
   
-  .nav-page li {
-    float: left;
-  }
-  
-  .nav-page li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  .nav-page li a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .nav-page li {
-      width: 100%;
+  .menu {
+    margin-left: $menu-margin-left;
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      
+      li {
+        margin-right: 20px; // Modifica per dimensioni più piccole
+        
+        &:last-child {
+          margin-right: 0;
+        }
+        
+        a {
+          color: $menu-link-color;
+          text-decoration: none;
+          font-weight: bold;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
-  
-    .nav-page li a {
-      padding: 10px;
-    }
   }
-  
-  @media screen and (min-width: 601px) and (max-width: 1024px) {
-    .nav-page li {
-      width: 33.33%;
-    }
-  }
-  
-  @media screen and (min-width: 1025px) {
-    .nav-page li {
-      width: auto;
-    }
-  }
-  
+}
 
+// Stile del contenuto principale
+main {
+  margin-top: 60px;
+}
+
+// Media query per telefoni
+@media only screen and (max-width: 600px) {
+  .menu {
+    margin-left: 10%; // Modifica per dimensioni più piccole
+  }
+}
+
+// Media query per iPad
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .menu {
+    margin-left: 15%; // Modifica per dimensioni medie
+  }
+}
+
+// Media query per laptop
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .menu {
+    margin-left: 20%; // Valore predefinito per laptop
+  }
+}
+
+// Media query per schermi TV
+@media only screen and (min-width: 1441px) {
+  .menu {
+    margin-left: 25%; // Modifica per schermi TV
+  }
+}
 

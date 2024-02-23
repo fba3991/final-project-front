@@ -1,29 +1,125 @@
-// Home.scss
-
+/* Stile base per tutte le viewport */
 .home-page {
-    height: 100vh;
-    
-    background-image: url("/home-page.avif");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    h1 {
-        font-size: 6vw; // Utilizza una dimensione del testo relativa alla larghezza della viewport
-        color: #fff;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    // Regole per rendere l'immagine di sfondo responsive
-    @media screen and (max-width: 768px) {
-        background-size: contain; // Contiene l'immagine senza distorsioni
-    }
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/home-page.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+.second-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(251, 250, 250, 0.9);
+  padding: 50px;
+}
 
+.third-page {
+  height: 80vh;
+  background: url("/public/third-page.png") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 10px;
+}
 
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
 
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
+.footer-content div {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.footer-content h3 {
+  font-size: 1.5rem;
+}
+
+.footer-content p {
+  margin: 10px 0;
+}
+
+.footer-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-content ul li {
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  background-color: #222;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Stili specifici per diverse dimensioni di schermo utilizzando media query */
+@media only screen and (max-width: 600px) {
+  /* Stili per dispositivi con larghezza massima di 600px (es. telefoni) */
+  .home-page h1 {
+    font-size: 10vw;
+    margin-bottom: 110px;
+  }
+
+  .second-page h1,
+  .second-page h4 {
+    padding: 20px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Stili per dispositivi con larghezza compresa tra 601px e 1024px (es. iPad) */
+  .home-page h1 {
+    font-size: 8vw;
+    margin-bottom: 150px;
+  }
+
+  .second-page h1,
+  .second-page h4 {
+    padding: 15px;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  /* Stili per dispositivi con larghezza compresa tra 1025px e 1440px (es. laptop) */
+  .home-page h1 {
+    font-size: 6vw;
+    margin-bottom: 200px;
+  }
+
+  .second-page h1,
+  .second-page h4 {
+    padding: 20px;
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  /* Stili per dispositivi con larghezza superiore a 1440px (es. schermi TV) */
+  .home-page h1 {
+    font-size: 4vw;
+    margin-bottom: 250px;
+  }
+
+  .second-page h1,
+  .second-page h4 {
+    padding: 25px;
+  }
+}

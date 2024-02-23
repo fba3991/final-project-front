@@ -6,6 +6,7 @@ import PlayerList from './components/PlayerList';
 import CreatePlayer from './components/CreatePlayer';
 import EditPlayer from './components/EditPlayer';
 import PlayerPage from './components/PlayerPage';
+import Storia from './components/Storia';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
       <Route path="/Players/create" element={<CreatePlayer />} />
       <Route path="/Players/:id/edit" element={<EditPlayer />} />
       <Route path="/Players/:id/" element={<PlayerPage />} />
+      <Route path="/Storia" element={<Storia />} />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
  
