@@ -31,14 +31,14 @@ export default function CreatePlayer() {
     e.preventDefault(); // Impedisce il comportamento predefinito del form
     setLoading(true); // la pagina e carica
 
+    //gestione per l'eta minama del calciatore
     const playerAge = dayjs().diff(player.dataNascita, "year");
-    
+
     if (playerAge < 15) {
       setError("Il giocatore deve avere un eta minima di 15 anni!");
       setLoading(false); // Impost lo stato di caricamento a fals0 che e se è un errore la paggina non viene caricata
       return;
     }
-    
 
     // richiesta  POST al backend per creare il giocatore
     axios
@@ -83,9 +83,6 @@ export default function CreatePlayer() {
       setPlayer({ ...player, [name]: value });
     }
   };
-
-  // Funzione per gestire i cambiamenti della data, se la data e valida l'utente puo creare il giocatore.
- 
 
   return (
     <div className="create-player-container">
@@ -172,13 +169,12 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="partiteGiocate"
+            min={0}
             max={100}
             value={player.partiteGiocate}
-          
             onChange={(e) =>
               setPlayer({ ...player, partiteGiocate: e.target.value })
             }
-           
           />
         </label>
 
@@ -187,6 +183,7 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="ammonizioni"
+            min={0}
             max={100}
             value={player.ammonizioni}
             onChange={(e) =>
@@ -200,6 +197,7 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="espulsioni"
+            min={0}
             max={50}
             value={player.espulsioni}
             onChange={(e) =>
@@ -213,6 +211,7 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="assist"
+            min={0}
             max={100}
             value={player.assist}
             onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
@@ -225,7 +224,9 @@ export default function CreatePlayer() {
             <input
               type="number"
               name="gol"
+            min={0}
               max={100}
+              
               value={player.gol}
               onChange={(e) => setPlayer({ ...player, gol: e.target.value })}
             />
@@ -239,6 +240,7 @@ export default function CreatePlayer() {
             <input
               type="number"
               name="golSubiti"
+              min={0}
               max={200}
               value={player.golSubiti}
               onChange={(e) =>
