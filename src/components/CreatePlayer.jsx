@@ -32,9 +32,9 @@ export default function CreatePlayer() {
     setLoading(true); // la pagina e carica
 
     const playerAge = dayjs().diff(player.dataNascita, "year");
-    // Verifica se l'età del giocatore è inferiore a 15 anni
+    
     if (playerAge < 15) {
-      setError("Il giocatore deve avere almeno 15 anni.");
+      setError("Il giocatore deve avere un eta minima di 15 anni!");
       setLoading(false); // Impost lo stato di caricamento a fals0 che e se è un errore la paggina non viene caricata
       return;
     }
