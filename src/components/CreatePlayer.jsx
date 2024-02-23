@@ -38,6 +38,7 @@ export default function CreatePlayer() {
       setLoading(false); // Impost lo stato di caricamento a fals0 che e se è un errore la paggina non viene caricata
       return;
     }
+    
 
     // richiesta  POST al backend per creare il giocatore
     axios
@@ -84,12 +85,7 @@ export default function CreatePlayer() {
   };
 
   // Funzione per gestire i cambiamenti della data, se la data e valida l'utente puo creare il giocatore.
-  const handleDateChange = (e) => {
-    const { name, value } = e.target;
-    if (dayjs(value, "YYYY-MM-DD").isValid() || value === "") {
-      setPlayer({ ...player, [name]: value }); // Aggiorna lo stato del giocatore
-    }
-  };
+ 
 
   return (
     <div className="create-player-container">
@@ -134,7 +130,9 @@ export default function CreatePlayer() {
             type="date"
             name="dataNascita"
             value={player.dataNascita}
-            onChange={handleDateChange}
+            onChange={(e) =>
+              setPlayer({ ...player, dataNascita: e.target.value })
+            }
           />
         </label>
 
