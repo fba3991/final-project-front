@@ -6,42 +6,46 @@ import { useNavigate } from "react-router-dom";
 import "./PlayerPage.scss";
 
 export default function PlayerPage() {
-  const { id } = useParams();
-  const [player, setPlayer] = useState({});
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams(); //
+  const [player, setPlayer] = useState({}); // Stato per memorizzare i dati del giocatore
+  const [error, setError] = useState(""); // Stato per memorizzare eventuali errori
+  const [isLoading, setIsLoading] = useState(true); // Stato per gestire lo stato di caricamento
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
+    setIsLoading(true); // Imposta isLoading su true durante il caricamento dei dati
+    axios //  richiesta GET al backend per ottenere i dati del giocatore
       .get(`${VITE_BACKEND_URL}/player/${id}`)
       .then((response) => {
-        setPlayer(response.data);
-        setIsLoading(false);
+        setPlayer(response.data); // Aggiorna lo stato con i dati del giocatore
+        setIsLoading(false); // Imposta isLoading su false dopo il caricamento dei dati
       })
       .catch((error) => {
         setError(
-          error.response?.data?.message ||
+          // Gestisce gli errori durante il recupero dei dati del giocatore
+          error.response.data.message ||
             "Si è verificato un errore durante il recupero del giocatore."
         );
-        setIsLoading(false);
+        setIsLoading(false); // Imposta isLoading su false anche in caso di errore
       });
-  }, [id]);
+  }, [id]); // si attiva ogni volta che cambia l'ID del giocatore
 
+  // Gestisce la cancellazione del giocatore
   const handleDeletePlayer = () => {
     const confirmed = confirm(
+      // conferma eliminazione calciatore
       "Sei sicuro di voler eliminare questo giocatore?"
     );
     if (confirmed) {
       axios
         .delete(`${VITE_BACKEND_URL}/player/${id}`)
         .then(() => {
-          navigate(-1);
+          navigate(-1); // Naviga all'indietro dopo la cancellazione del giocatore
         })
         .catch((error) => {
           setError(
+            // Gestisce gli errori durante l'eliminazione del giocatore
             error.response?.data?.message ||
               "Si è verificato un errore durante l'eliminazione del giocatore."
           );
@@ -49,14 +53,17 @@ export default function PlayerPage() {
     }
   };
 
+  // Renderizza la pagina del giocatore
   return (
     <div className="PlayerPage">
       <h1>Dettagli Giocatore</h1>
-      {isLoading ? (
+      {isLoading ? ( // Mostra un messaggio di caricamento se isLoading è true
         <p>Caricamento...</p>
       ) : (
         <>
-          {error && <p>Si è verificato un errore: {error}</p>}
+          {" "}
+          {/* Utilizzo di React Fragment per restituire più elementi senza un wrapper esterno */}
+          {error && <p>{error}</p>}
           <div className="player-card">
             <img
               src="/immagine-calciatore.png"

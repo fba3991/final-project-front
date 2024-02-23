@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"; // Importo il modulo axios per effettuare richieste HTTP
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
@@ -6,11 +6,13 @@ import "./CreatePlayer.scss";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
+// Definizione del componente funzionale CreatePlayer
 export default function CreatePlayer() {
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); // Stato per memorizzare eventuali errori
+  const [successMessage, setSuccessMessage] = useState(""); // Stato per memorizzare  messaggio di successo
+  const [loading, setLoading] = useState(false); // Stato per gestire lo stato di caricamento della pagina
   const [player, setPlayer] = useState({
+    // Stato per memorizzare i dati del giocatore
     nome: "",
     cognome: "",
     dataNascita: "",
@@ -23,24 +25,27 @@ export default function CreatePlayer() {
     gol: 0,
     golSubiti: 0,
   });
-  
-  
 
+  // Funzione per gestire l'invio del form, quindi creo una funziona callback e la passero al form.
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault(); // Impedisce il comportamento predefinito del form
+    setLoading(true); // la pagina e carica
 
-    const playerAge = dayjs().diff(player.dataNascita, 'year');
+    const playerAge = dayjs().diff(player.dataNascita, "year");
+    // Verifica se l'età del giocatore è inferiore a 15 anni
     if (playerAge < 15) {
-      setError('Il giocatore deve avere almeno 15 anni.');
-      setLoading(false);
+      setError("Il giocatore deve avere almeno 15 anni.");
+      setLoading(false); // Impost lo stato di caricamento a fals0 che e se è un errore la paggina non viene caricata
       return;
     }
 
+    // richiesta  POST al backend per creare il giocatore
     axios
       .post(`${VITE_BACKEND_URL}/player`, player)
       .then(() => {
-        setSuccessMessage("Giocatore creato con successo!");
+        // Se la richiesta ha successo
+        setSuccessMessage("Giocatore creato con successo!"); // Imposto un messaggio di successo
+        // Reimposta lo stato del giocatore a vuoto
         setPlayer({
           nome: "",
           cognome: "",
@@ -56,41 +61,45 @@ export default function CreatePlayer() {
         });
       })
       .catch((error) => {
+        // Se si verifica un errore durante la richiesta
         setError(
           error.response.data.message ||
             "Si è verificato un errore durante l'aggiunta del giocatore."
         );
-        setSuccessMessage("");
+        setSuccessMessage(""); // Reimposta il messaggio di successo
       })
       .finally(() => {
-        setLoading(false);
+        // Alla fine della richiesta
+        setLoading(false); // Imposta lo stato di caricamento a false
       });
   };
 
+  // Funzione per gestire i gli input di text, l'utente non potra inserire simboli o numeri
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Verifica se il valore contiene solo lettere o spazi
+    // Verifico se il valore contiene solo lettere o spazi
     if (/^[A-Za-z ]*$/.test(value) || value === "") {
       setPlayer({ ...player, [name]: value });
     }
   };
 
-  
+  // Funzione per gestire i cambiamenti della data, se la data e valida l'utente puo creare il giocatore.
   const handleDateChange = (e) => {
     const { name, value } = e.target;
-    // Verifica se la data è nel formato corretto (YYYY-MM-DD)
     if (dayjs(value, "YYYY-MM-DD").isValid() || value === "") {
-      setPlayer({ ...player, [name]: value });
+      setPlayer({ ...player, [name]: value }); // Aggiorna lo stato del giocatore
     }
   };
-  
+
   return (
     <div className="create-player-container">
       <h1 className="crea">Crea il giocatore</h1>
-      {error && <p className="error-message">{error}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      
-
+      {error && <p className="error-message">{error}</p>}{" "}
+      {/* Visualizza un messaggio di errore se presente */}
+      {successMessage && (
+        <p className="success-message">{successMessage}</p>
+      )}{" "}
+      {/* Visualizza un messaggio di successo se presente */}
       <form onSubmit={handleSubmit}>
         <label>
           Nome:
@@ -101,7 +110,6 @@ export default function CreatePlayer() {
             value={player.nome}
             onChange={handleChange}
             maxLength={20}
-            
           />
         </label>
 
@@ -125,7 +133,6 @@ export default function CreatePlayer() {
             name="dataNascita"
             value={player.dataNascita}
             onChange={handleDateChange}
-         /*    {(e)=> setPlayer({...player, dataNascita:e.target.value})} */
           />
         </label>
 
@@ -158,6 +165,7 @@ export default function CreatePlayer() {
             maxLength={30}
           />
         </label>
+
         <label>
           Partite Giocate:
           <input
@@ -216,6 +224,7 @@ export default function CreatePlayer() {
           </label>
         )}
 
+        {/* gol subiti, visibile solo se la posizione è "Portiere" */}
         {player.posizione === "Portiere" && (
           <label>
             Gol Subiti:
@@ -230,9 +239,13 @@ export default function CreatePlayer() {
           </label>
         )}
 
+        {/* se al click del bottone mostra messaggio di caricamento non sara possibile creare un nuovo giocatore finche i dati 
+        non saranno inviati*/}
         <button type="submit" disabled={loading}>
           {loading ? "Caricamento..." : "Aggiungi Giocatore"}
         </button>
+
+        {/* Bottone per tornare alla lista dei giocatori */}
         <button>
           <Link to="/Players">Torna alla lista dei giocatori</Link>
         </button>

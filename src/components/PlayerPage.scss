@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 .player-image {
-  width: 200px; /* Imposta la larghezza desiderata */
-  height: 200px; /* Imposta l'altezza desiderata */
-  object-fit: cover; /* Scala e ritaglia l'immagine per adattarla al riquadro */
-  display: block; /* Assicurati che l'immagine sia un blocco per poter centrare facilmente */
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* taglia l'immagine per adattarla  */
+  display: block;
   margin: 0 auto; /* Centra l'immagine orizzontalmente */
-  margin-bottom: 1rem; /* Aggiungi spazio inferiore */
+  margin-bottom: 1rem;
 }
 
 .PlayerPage {
@@ -14,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-image: url('/public/back-list.png');
+  background-image: url("/public/back-list.png");
   background-size: cover; /* Scala l'immagine per coprire l'intera area */
   background-position: center; /* Centra l'immagine */
   background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
@@ -60,14 +58,16 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+    border: transparent;
+    background-color: transparent;
   }
 
   .button-handle,
   .button-edit,
   .button-list {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -92,33 +92,41 @@
   .button-list {
     background-color: #000000;
     color: #fff;
-    margin-right: 1rem; /* Spazio tra i bottoni */
+    margin-right: 1rem;
   }
 }
 
-/* Stili per schermi fino a 600px (telefoni) */
+/* Stili per schermi fino a 600px  */
 @media (max-width: 600px) {
   .PlayerPage {
     padding: 1rem;
   }
 
-  ul li {
-    flex-basis: calc(100% - 2rem); /* Visualizza un singolo elemento a larghezza completa */
+  .PlayerPage ul {
+    flex-direction: column; /* Cambia la direzione dei flexbox in colonna solo all'interno di PlayerPage */
+    align-items: center; /* Allinea gli elementi al centro solo all'interno di PlayerPage */
+  }
+
+  .PlayerPage ul li {
+    width: 100%; /* Imposta la larghezza completa per gli elementi della lista solo all'interno di PlayerPage */
+    margin-bottom: 1rem; /* Aggiungi spazio inferiore tra gli elementi solo all'interno di PlayerPage */
   }
 }
-
-/* Stili per schermi fino a 768px (iPad in modalità portrait) */
+/* Stili per schermi fino a 768px ipad */
 @media (max-width: 768px) {
   .PlayerPage {
     padding: 1.5rem;
   }
 
   ul li {
-    flex-basis: calc(50% - 1rem); /* 2 colonne invece di 3 */
+    flex-basis: calc(50% - 1rem);
+  }
+
+  .button-container {
+    border-radius: 20px;
   }
 }
 
-/* Stili per schermi fino a 1024px (iPad in modalità landscape) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .PlayerPage {
     padding: 2rem;

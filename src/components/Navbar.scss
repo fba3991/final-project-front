@@ -1,33 +1,27 @@
-// Definizione delle variabili per la larghezza del menu in base alle dimensioni del viewport
-$telefono: 100%; // Larghezza completa del menu per i telefoni
-$iPad: 75%; // Larghezza del menu per iPad
-$laptop: 50%; // Larghezza del menu per laptop
-$schermiTV: 25%; // Larghezza del menu per schermi TV
-
 // Stile della barra di navigazione
 .nav-page {
-  background-color:white;
-  padding: 10px 20px;
-  height: 30px;
+  background-color: rgb(250, 218, 218);
+  padding: 20px 20px;
+  height: 35px;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1000;
-  display: flex;
+  z-index: 0;
+
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
 
   .logo img {
-    width: 40px;
-    margin-right: 10px;
-    border-radius: 20px;
+    width: 45px;
+    margin-right: 5px;
+    border-radius: 30px;
   }
 
   .team-name {
-    color: black;
+    color: rgb(144, 30, 30);
     font-size: 18px;
     font-weight: bold;
   }
@@ -43,12 +37,8 @@ $schermiTV: 25%; // Larghezza del menu per schermi TV
       li {
         margin-right: 20px;
 
-        &:last-child {
-          margin-right: 0;
-        }
-
         a {
-          color:black;
+          color: black;
           text-decoration: none;
           font-weight: bold;
 
@@ -60,41 +50,38 @@ $schermiTV: 25%; // Larghezza del menu per schermi TV
     }
   }
 }
-.storia-link{
+.storia-link {
   display: none;
 }
 // Media query per telefoni
 @media only screen and (max-width: 600px) {
   .menu {
-    
-    width: $telefono;
+    width: 100%;
   }
-  .storia-link{
+  .storia-link {
     display: none;
   }
-
 }
 
 // Media query per iPad
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   .menu {
-    width: $iPad;
+    width: 75%;
   }
 }
 
 // Media query per laptop
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .menu {
-    width: $laptop;
+    width: 50%;
   }
 }
 
 // Media query per schermi TV
 @media only screen and (min-width: 1441px) {
   .menu {
-    width: $schermiTV;
+    width: 25%;
   }
-  
 }
 
 main {

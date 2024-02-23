@@ -9,8 +9,9 @@ import "./EditPlayer.scss";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 export default function EditPlayer() {
-  const { id } = useParams();
+  const { id } = useParams(); // Ottenimento del parametro dell'ID del giocatore dall'URL
   const [player, setPlayer] = useState({
+    // Definizione dello stato per i dati del giocatore
     nome: "",
     cognome: "",
     dataNascita: "",
@@ -21,20 +22,21 @@ export default function EditPlayer() {
     espulsioni: 0,
     assist: 0,
     gol: 0,
-    golSubiti: 0, // assuming this is a field for goalkeepers
+    golSubiti: 0,
   });
-  const [error, setError] = useState("");
-  const [loading, setLoading]= useState("")
-  const navigate = useNavigate();
+  const [error, setError] = useState(""); // Definizione dello stato per gli errori
+  const [loading, setLoading] = useState(""); // Definizione dello stato per il caricamento
+  const navigate = useNavigate(); // Hook per la navigazione tra le pagine
 
+  // Effetto per ottenere i dati del giocatore dal backend al caricamento della pagina
   useEffect(() => {
     axios
       .get(`${VITE_BACKEND_URL}/player/${id}`)
       .then((response) => {
         if (response.data) {
-          setPlayer(response.data);
+          setPlayer(response.data); // Impostazione dei dati del giocatore nello stato
         } else {
-          setError("Dati del giocatore non trovati.");
+          setError("Dati del giocatore non trovati."); // Gestione degli errori se i dati non sono disponibili
         }
       })
       .catch((error) => {
@@ -43,23 +45,24 @@ export default function EditPlayer() {
             "Si è verificato un errore durante il recupero del giocatore."
         );
       });
-  }, [id]);
+  }, [id]); // Dipendenza dell'effetto sull'ID del giocatore
 
+  // Funzione per gestire l'invio del modulo di modifica del giocatore
   const handleSubmit = (e) => {
-    e.preventDefault();
-    
-   
-    const playerAge = dayjs().diff(player.dataNascita, 'year');
+    e.preventDefault(); // Impedisce il comportamento predefinito del modulo
+
+    const playerAge = dayjs().diff(player.dataNascita, "year"); // Calcolo dell'età del giocatore
+
     if (playerAge < 15) {
-      setError('Il giocatore deve avere almeno 15 anni.');
+      setError("Il giocatore deve avere almeno 15 anni.");
       setLoading(false);
       return;
     }
 
+    // Invio dei dati del giocatore modificati al backend
     axios
       .put(`${VITE_BACKEND_URL}/player/${id}`, player)
       .then(() => {
-        // Navigate to the player list after saving the changes
         navigate(-1);
       })
       .catch((error) => {
@@ -70,16 +73,13 @@ export default function EditPlayer() {
       });
   };
 
+  // Funzione per gestire i gli input di text, l'utente non potra inserire simboli o numeri
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // Verifica se il valore contiene solo lettere
     if (/^[A-Za-z]+$/.test(value) || value === "") {
       setPlayer({ ...player, [name]: value });
     }
   };
-
-    
-  
 
   return (
     <div className="EditPlayer">
@@ -89,7 +89,7 @@ export default function EditPlayer() {
         <label>
           Nome:
           <input
-             required
+            required
             type="text"
             name="nome"
             value={player.nome}
@@ -100,7 +100,7 @@ export default function EditPlayer() {
         <label>
           Cognome:
           <input
-           required
+            required
             type="text"
             name="cognome"
             value={player.cognome}
@@ -123,7 +123,7 @@ export default function EditPlayer() {
         <label>
           Nazionalita:
           <input
-           required
+            required
             type="text"
             name="nazionalita"
             value={player.nazionalita}
@@ -152,7 +152,7 @@ export default function EditPlayer() {
             <input
               type="Number"
               name="partite Giocate"
-              value={player.partiteGiocate}
+              value={player.partiteGiocate || ""}
               onChange={(e) =>
                 setPlayer({ ...player, partiteGiocate: e.target.value })
               }

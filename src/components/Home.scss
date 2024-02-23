@@ -1,4 +1,3 @@
-/* Stile base per tutte le viewport */
 .home-page {
   width: 100vw;
   height: 100vh;
@@ -8,23 +7,45 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 
-  h1{
-    color: #484747;
+  .text-home {
+    display: flex;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 150px;
+  }
+
+  h1 {
+    color: #490909;
+  }
+
+  h4 {
+    color: #333;
   }
 }
-  
-
 
 .second-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(251, 250, 250, 0.9);
+  background-color: rgba(255, 255, 255, 0.917);
   padding: 50px;
+  text-align: center;
+
+  h1 {
+    color: #333;
+  }
 }
 
+.button-container {
+  margin-top: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #33333370;
+}
 .third-page {
   height: 80vh;
   background: url("/public/third-page.png") no-repeat center center/cover;
@@ -33,6 +54,16 @@
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 10px;
+
+  .button-container2 {
+    margin-bottom: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #fffefe70;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
 }
 
 .footer {
@@ -79,53 +110,50 @@
 
 /* Stili specifici per diverse dimensioni di schermo utilizzando media query */
 @media only screen and (max-width: 600px) {
-
-  .home-page h1 {
-    font-size: 10vw;
-    margin-bottom: 110px;
+  .home-page {
+    .text-home {
+      margin-bottom: 400px; /* Riduci lo spazio inferiore per adattarsi ai dispositivi più piccoli */
+    }
   }
 
   .second-page h1,
   .second-page h4 {
-    padding: 20px;
+    padding: 10px; /* Riduci il padding per adattarsi ai dispositivi più piccoli */
   }
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
-
   .home-page h1 {
     font-size: 8vw;
-    margin-bottom: 150px;
+    margin-bottom: 100px; /* Riduci lo spazio inferiore per adattarsi ai dispositivi di dimensioni medie */
   }
 
   .second-page h1,
   .second-page h4 {
-    padding: 15px;
+    padding: 15px; /* Riduci il padding per adattarsi ai dispositivi di dimensioni medie */
   }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
-  /* Stili per dispositivi con larghezza compresa tra 1025px e 1440px (es. laptop) */
   .home-page h1 {
     font-size: 6vw;
-    margin-bottom: 200px;
+    margin-bottom: 150px; /* Riduci lo spazio inferiore per adattarsi ai dispositivi più grandi */
   }
 
   .second-page h1,
   .second-page h4 {
-    padding: 20px;
+    padding: 20px; /* Aumenta il padding per adattarsi ai dispositivi più grandi */
   }
 }
 
 @media only screen and (min-width: 1441px) {
-  /* Stili per dispositivi con larghezza superiore a 1440px (es. schermi TV) */
   .home-page h1 {
     font-size: 4vw;
-    margin-bottom: 250px;
+    margin-bottom: 200px; /* Riduci lo spazio inferiore per adattarsi ai dispositivi molto grandi */
   }
 
   .second-page h1,
   .second-page h4 {
-    padding: 25px;
+    padding: 25px; /* Aumenta il padding per adattarsi ai dispositivi molto grandi */
   }
 }

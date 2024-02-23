@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 // Variabili
 $primary-color: #38bd0b;
 $secondary-color: #9b3434;
@@ -11,123 +9,123 @@ $error-color: red;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-image: url('/public/edit-player.png');
-  background-size: cover; 
-  background-position: center; 
-  font-family: 'Roboto', sans-serif;
-  color: #f6f1f1;
+  background-image: url("/public/edit-player.png");
+  background-size: cover;
+  background-position: center;
+  font-family: "Roboto", sans-serif;
 
   h1 {
     text-align: center;
     margin-top: 40px;
     font-weight: 700;
-    color: #333;
+    color: #000000;
   }
 
   form {
     width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    background-color:transparent; // Trasparenza per rendere leggibile il testo sull'immagine di sfondo
+    padding: 30px;
+    background-color: transparent;
 
     label {
       display: block;
       font-weight: bold;
       margin-bottom: 5px;
       color: #030000;
+      max-width: 200px;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
       border: 1px solid #ccc;
-      border-radius: 20px;
+      border-radius: 50px;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
       font-size: 14px;
       color: #333;
     }
 
     button {
-      width: 34%;
+      width: 200px;
       padding: 10px;
       margin-top: 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
       background-color: $primary-color;
       color: #fff;
       cursor: pointer;
-      font-family: 'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
       font-size: 14px;
       font-weight: bold;
       text-transform: uppercase;
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: $secondary-color;
+        background-color: $secondary-color; // Cambio di colore al passaggio del mouse
       }
     }
 
     p {
-      color: $error-color;
-      margin-top: 10px;
+      color: $error-color; // Colore del testo per i messaggi di errore
+      margin-top: 10px; // Spaziatura superiore
     }
   }
 
   // Media query per telefoni
   @media only screen and (max-width: 600px) {
-    padding: 1rem;
+    padding: 1rem; // Spaziatura interna ridotta
 
     h1 {
-      margin-top: 20px;
+      margin-top: 20px; // Spaziatura superiore ridotta
     }
 
     form {
-      padding: 15px;
-      max-width: 100%;
+      padding: 15px; // Spaziatura interna ridotta
+      max-width: 100%; // Larghezza massima del form al 100%
     }
   }
 
   // Media query per iPad
   @media only screen and (min-width: 601px) and (max-width: 1024px) {
-    padding: 1.5rem;
+    padding: 1.5rem; // Spaziatura interna ridotta
 
     h1 {
-      margin-top: 30px;
+      margin-top: 30px; // Spaziatura superiore ridotta
     }
 
     form {
-      padding: 20px;
-      max-width: 80%;
+      padding: 20px; // Spaziatura interna ridotta
+      max-width: 80%; // Larghezza massima del form al 80%
     }
   }
 
   // Media query per laptop
   @media only screen and (min-width: 1025px) and (max-width: 1440px) {
-    padding: 2rem;
+    padding: 2rem; // Spaziatura interna
 
     h1 {
-      margin-top: 40px;
+      margin-top: 40px; // Spaziatura superiore
     }
 
     form {
-      padding: 25px;
-      max-width: 60%;
+      padding: 25px; // Spaziatura interna
+      max-width: 60%; // Larghezza massima del form al 60%
     }
   }
 
   // Media query per schermi TV
   @media only screen and (min-width: 1441px) {
-    padding: 3rem;
+    padding: 3rem; // Spaziatura interna
 
     h1 {
-      margin-top: 50px;
+      margin-top: 50px; // Spaziatura superiore
     }
 
     form {
-      padding: 30px;
-      max-width: 50%;
+      padding: 30px; // Spaziatura interna
+      max-width: 50%; // Larghezza massima del form al 50%
     }
   }
 }

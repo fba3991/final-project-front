@@ -1,118 +1,112 @@
-// Variabili
-$primary-color: #333;
-$secondary-color: #555;
-$background-color: #f9f9f9;
-$box-shadow-color: rgba(0, 0, 0, 0.1);
-$hover-transform: translateY(-5px);
-
-// Stile generale della lista giocatori
+/* Stile generale della lista giocatori */
 .players-list-container {
-  max-width: 800px;
+  max-width: 800px; /* Imposta la larghezza del dei giocatori */
   margin: 100px auto;
-  
+
   h1 {
-    font-size: 28px;
+    font-size: 28px; /* Dimensione del titolo */
     margin-bottom: 20px;
-    color: $primary-color;
+    color: #333;
   }
-  
+
   ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  
+
     li {
-      margin-bottom: 20px;
+      margin-bottom: 20px; /* Spazio inferiore tra le cards */
       padding: 20px;
-      background-color: $background-color;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px $box-shadow-color;
-      transition: transform 0.3s ease;
-  
+      background-color: #f9f9f9;
+      border-radius: 50px;
+      box-shadow: 0 10px 0px #333; /* Ombra sotto le cards */
+      transition: transform 0.3s ease; /* Effetto di transizione al passaggio del mouse */
+
       &:hover {
-        transform: $hover-transform;
+        transform: translateY(
+          -5px
+        ); /* Effetto di sollevamento al passaggio del mouse */
       }
-  
+
       a {
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: $primary-color;
-  
+        color: #333;
+
         img {
           width: 100px;
           height: 100px;
           margin-right: 20px;
-          border-radius: 50%;
+          border-radius: 20px;
           object-fit: cover;
         }
-  
+
         .player-info {
-          flex: 1;
-  
+          flex: 1; /*  i dettagli del giocatore occupa lo spazio rimanente */
+
           div {
             margin-bottom: 5px;
             font-size: 18px;
-            color: $secondary-color;
+            color: #555;
           }
         }
       }
     }
   }
-  
+
   .loading-text {
-    font-size: 18px;
+    font-size: 18px; /* Dimensione del testo del messaggio di caricamento */
     margin-top: 20px;
-    color: $secondary-color;
+    color: #555;
   }
-  
+
   .error-message {
-    color: red;
+    color: red; /* Colore del testo del messaggio di errore */
     margin-top: 20px;
   }
 }
 
-// Responsive Design
+/* Responsive Design */
+
+/* Stili per schermi fino a 600px (telefoni) */
 @media screen and (max-width: 600px) {
   .players-list-container {
-    padding: 10px;
+    padding: 10px; /* Aggiunge padding al contenitore dei giocatori per schermi più piccoli */
   }
 
-  ul {
-    li {
-      padding: 15px;
+  ul li {
+    padding: 15px; /* Riduce il padding dei giocatori per schermi più piccoli */
 
-      a {
-        img {
-          width: 80px;
-          height: 80px;
-          margin-right: 15px;
-        }
+    a img {
+      width: 80px; /* Riduce la dimensione dell'immagine del giocatore per schermi più piccoli */
+      height: 80px;
+      margin-right: 15px; /* Riduce il margine destro dell'immagine per schermi più piccoli */
+    }
 
-        .player-info {
-          div {
-            font-size: 16px;
-          }
-        }
-      }
+    .player-info div {
+      font-size: 16px; /* Riduce la dimensione del testo delle informazioni del giocatore per schermi più piccoli */
     }
   }
 }
 
+/* Stili per schermi da 601px a 991px */
 @media screen and (min-width: 601px) and (max-width: 991px) {
   .players-list-container {
-    max-width: 600px;
+    max-width: 600px; /* Riduce la larghezza massima del contenitore dei giocatori per schermi medi */
   }
 }
 
+/* Stili per schermi da 992px a 1199px */
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .players-list-container {
-    max-width: 900px;
+    max-width: 900px; /* Riduce la larghezza massima del contenitore dei giocatori per schermi grandi */
   }
 }
 
+/* Stili per schermi oltre 1200px */
 @media screen and (min-width: 1200px) {
   .players-list-container {
-    max-width: 1200px;
+    max-width: 1200px; /* Imposta la larghezza massima del contenitore dei giocatori per schermi extra-large */
   }
 }
