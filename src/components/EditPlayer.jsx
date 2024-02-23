@@ -155,6 +155,7 @@ export default function EditPlayer() {
             <input
               type="Number"
               name="partite Giocate"
+              max={100}
               value={player.partiteGiocate || ""}
               onChange={(e) =>
                 setPlayer({ ...player, partiteGiocate: e.target.value })
@@ -166,6 +167,7 @@ export default function EditPlayer() {
             <input
               type="number"
               name="ammonizioni"
+              max={100}
               value={player.ammonizioni || ""}
               onChange={(e) =>
                 setPlayer({ ...player, ammonizioni: e.target.value })
@@ -177,6 +179,7 @@ export default function EditPlayer() {
             <input
               type="number"
               name="espulsioni"
+              max={50}
               value={player.espulsioni || ""}
               onChange={(e) =>
                 setPlayer({ ...player, espulsioni: e.target.value })
@@ -188,6 +191,7 @@ export default function EditPlayer() {
             <input
               type="number"
               name="espulsioni"
+              max={100}
               value={player.assist || ""}
               onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
             />
@@ -199,6 +203,7 @@ export default function EditPlayer() {
               <input
                 type="number"
                 name="gol"
+                max={100}
                 value={player.gol}
                 onChange={(e) => setPlayer({ ...player, gol: e.target.value })}
               />
@@ -211,6 +216,7 @@ export default function EditPlayer() {
               <input
                 type="number"
                 name="goalsSubiti"
+                max={200}
                 value={player.golSubiti}
                 onChange={(e) =>
                   setPlayer({ ...player, golSubiti: e.target.value })

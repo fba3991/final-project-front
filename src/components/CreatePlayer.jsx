@@ -174,11 +174,13 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="partiteGiocate"
+            max={100}
             value={player.partiteGiocate}
+          
             onChange={(e) =>
               setPlayer({ ...player, partiteGiocate: e.target.value })
             }
-            max={100}
+           
           />
         </label>
 
@@ -187,6 +189,7 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="ammonizioni"
+            max={100}
             value={player.ammonizioni}
             onChange={(e) =>
               setPlayer({ ...player, ammonizioni: e.target.value })
@@ -199,6 +202,7 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="espulsioni"
+            max={50}
             value={player.espulsioni}
             onChange={(e) =>
               setPlayer({ ...player, espulsioni: e.target.value })
@@ -211,6 +215,7 @@ export default function CreatePlayer() {
           <input
             type="number"
             name="assist"
+            max={100}
             value={player.assist}
             onChange={(e) => setPlayer({ ...player, assist: e.target.value })}
           />
@@ -222,6 +227,7 @@ export default function CreatePlayer() {
             <input
               type="number"
               name="gol"
+              max={100}
               value={player.gol}
               onChange={(e) => setPlayer({ ...player, gol: e.target.value })}
             />
@@ -235,6 +241,7 @@ export default function CreatePlayer() {
             <input
               type="number"
               name="golSubiti"
+              max={200}
               value={player.golSubiti}
               onChange={(e) =>
                 setPlayer({ ...player, golSubiti: e.target.value })
