@@ -105,6 +105,7 @@ export default function CreatePlayer() {
           Nome:
           <input
             required
+            placeholder="Massimo 20 caratteri"
             type="text"
             name="nome"
             value={player.nome}
@@ -117,6 +118,7 @@ export default function CreatePlayer() {
           Cognome:
           <input
             required
+            placeholder="Massimo 30 caratteri"
             type="text"
             name="cognome"
             value={player.cognome}
@@ -158,6 +160,7 @@ export default function CreatePlayer() {
           Nazionalità:
           <input
             required
+            placeholder="Massimo 30 caratteri"
             type="text"
             name="nazionalita"
             value={player.nazionalita}

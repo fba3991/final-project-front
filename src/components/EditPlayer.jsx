@@ -90,6 +90,7 @@ export default function EditPlayer() {
           Nome:
           <input
             required
+            placeholder="Massimo 20 caratteri"
             type="text"
             name="nome"
             value={player.nome}
@@ -101,11 +102,12 @@ export default function EditPlayer() {
           Cognome:
           <input
             required
+            placeholder="Massimo 30 caratteri "
             type="text"
             name="cognome"
             value={player.cognome}
             onChange={handleChange}
-            maxLength={20}
+            maxLength={30}
           />
         </label>
 
@@ -124,6 +126,7 @@ export default function EditPlayer() {
           Nazionalita:
           <input
             required
+            placeholder="Massimo 20 caratteri"
             type="text"
             name="nazionalita"
             value={player.nazionalita}
