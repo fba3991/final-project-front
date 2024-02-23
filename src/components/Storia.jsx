@@ -1,5 +1,5 @@
 import "./Storia.scss";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function Storia() {
   return (
@@ -48,13 +48,19 @@ export default function Storia() {
           <div>
             <h3>Link utili</h3>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/Players">Squadra</Link></li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/Players">Squadra</Link>
+              </li>
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
           <p>&copy; 2024 Salotto FC. Tutti i diritti riservati.</p>
+          <p>Edit: Fabio Esposito, Full-Stack Web Developer </p>
+          <p> fabioes1993@gmail.com</p>
         </div>
       </footer>
     </div>

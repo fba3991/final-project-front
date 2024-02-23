@@ -66,6 +66,9 @@ export default function () {
         {/* Piè di pagina del footer */}
         <div className="footer-bottom">
           <p>&copy; 2024 Salotto FC. Tutti i diritti riservati.</p>
+          <p>Edit: Fabio Esposito, Full-Stack Web Developer  </p>
+          <p> fabioes1993@gmail.com</p>
+          
         </div>
       </footer>
     </div>
