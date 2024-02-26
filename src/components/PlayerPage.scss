@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  background-image: url("/public/back-list.png");
+  background-image: url("/back-list.png");
   background-size: cover; /* Scala l'immagine per coprire l'intera area */
   background-position: center; /* Centra l'immagine */
   background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
@@ -119,7 +119,7 @@
   }
 
   ul li {
-    flex-basis: calc(50% - 1rem);
+    flex-basis: calc(50% - 1rem);  //l'elemento flessibile occuperà inizialmente il 50% 
   }
 
   .button-container {
