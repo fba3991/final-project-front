@@ -62,7 +62,8 @@ export default function EditPlayer() {
     // Invio dei dati del giocatore modificati al backend
     axios
       .put(`${VITE_BACKEND_URL}/player/${id}`, player)
-      .then(() => {
+      .then((response) => {
+        setPlayer(response.data)
         navigate(-1);
       })
       .catch((error) => {

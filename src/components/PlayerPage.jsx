@@ -46,7 +46,7 @@ export default function PlayerPage() {
         .catch((error) => {
           setError(
             // Gestisce gli errori durante l'eliminazione del giocatore
-            error.response?.data?.message ||
+            error.response.data.message ||
               "Si è verificato un errore durante l'eliminazione del giocatore."
           );
         });

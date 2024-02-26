@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import "./CreatePlayer.scss";
+import PlayerPage from "./PlayerPage";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -29,21 +30,22 @@ export default function CreatePlayer() {
   // Funzione per gestire l'invio del form, quindi creo una funziona callback e la passero al form.
   const handleSubmit = (e) => {
     e.preventDefault(); // Impedisce il comportamento predefinito del form
-    setLoading(true); // la pagina e carica
+    setLoading(true); // la pagina e in carica
 
     //gestione per l'eta minama del calciatore
     const playerAge = dayjs().diff(player.dataNascita, "year");
-
-    if (playerAge < 15) {
+     if (playerAge < 15) {
       setError("Il giocatore deve avere un eta minima di 15 anni!");
       setLoading(false); // Impost lo stato di caricamento a fals0 che e se è un errore la paggina non viene caricata
+      
       return;
     }
 
     // richiesta  POST al backend per creare il giocatore
     axios
       .post(`${VITE_BACKEND_URL}/player`, player)
-      .then(() => {
+      .then((response) => {
+        setPlayer(response.data)
         // Se la richiesta ha successo
         setSuccessMessage("Giocatore creato con successo!"); // Imposto un messaggio di successo
         // Reimposta lo stato del giocatore a vuoto
@@ -64,10 +66,11 @@ export default function CreatePlayer() {
       .catch((error) => {
         // Se si verifica un errore durante la richiesta
         setError(
-          error.response.data.message ||
-            "Si è verificato un errore durante l'aggiunta del giocatore."
+          //errore di messaggio dal server
+          err.response.data.message 
+           
         );
-        setSuccessMessage(""); // Reimposta il messaggio di successo
+     
       })
       .finally(() => {
         // Alla fine della richiesta
@@ -77,10 +80,12 @@ export default function CreatePlayer() {
 
   // Funzione per gestire i gli input di text, l'utente non potra inserire simboli o numeri
   const handleChange = (e) => {
+    //destracturing dell'input 
     const { name, value } = e.target;
     // Verifico se il valore contiene solo lettere o spazi
     if (/^[A-Za-z ]*$/.test(value) || value === "") {
-      setPlayer({ ...player, [name]: value });
+      setPlayer({ ...player, [name]: value });// copia degli attributi player con i valori di input name e value e passsare la funzione all'onchage
+     
     }
   };
 
@@ -97,7 +102,7 @@ export default function CreatePlayer() {
         <label>
           Nome:
           <input
-            required
+         
             placeholder="Massimo 20 caratteri"
             type="text"
             name="nome"
@@ -110,7 +115,7 @@ export default function CreatePlayer() {
         <label>
           Cognome:
           <input
-            required
+           
             placeholder="Massimo 30 caratteri"
             type="text"
             name="cognome"
@@ -123,7 +128,7 @@ export default function CreatePlayer() {
         <label>
           Data di Nascita:
           <input
-            required
+           
             type="date"
             name="dataNascita"
             value={player.dataNascita}
@@ -136,7 +141,7 @@ export default function CreatePlayer() {
         <label>
           Posizione:
           <select
-            required
+           
             name="posizione"
             value={player.posizione}
             onChange={(e) =>
@@ -154,7 +159,7 @@ export default function CreatePlayer() {
         <label>
           Nazionalità:
           <input
-            required
+           
             placeholder="Massimo 30 caratteri"
             type="text"
             name="nazionalita"
