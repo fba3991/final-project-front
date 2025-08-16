@@ -1,0 +1,16 @@
+// Stili globali per la navbar fissa
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px; // Spazio per la navbar fissa
+}
+
+#root {
+  min-height: 100vh;
+  padding-top: 0;
+}
+
+// Assicura che tutti i contenitori principali abbiano spazio per la navbar
+main, .page-container {
+  padding-top: 20px;
+}

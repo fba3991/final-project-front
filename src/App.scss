@@ -1,0 +1,92 @@
+/* Variabili CSS per i temi */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #2c3e50;
+  --text-secondary: #6c757d;
+  --accent: #3498db;
+  --border: #e9ecef;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Temi globali */
+.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #2c3e50;
+  --text-secondary: #6c757d;
+  --accent: #3498db;
+  --border: #e9ecef;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.theme-dark {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent: #64b5f6;
+  --border: #404040;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+.theme-club {
+  --bg-primary: #7a0019;
+  --bg-secondary: #f7b32b;
+  --text-primary: #ffffff;
+  --text-secondary: #f0f0f0;
+  --accent: #f7b32b;
+  --border: #8b0000;
+  --shadow: rgba(122, 0, 25, 0.2);
+}
+
+/* Stili globali */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px; // Spazio per la navbar fissa
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+  padding-top: 0;
+  background: var(--bg-primary);
+}
+
+main, .page-container {
+  padding-top: 20px;
+  background: var(--bg-primary);
+}
+
+/* Transizioni fluide per i temi */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Scrollbar personalizzata */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

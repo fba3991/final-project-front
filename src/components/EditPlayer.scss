@@ -1,0 +1,272 @@
+// Variabili
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$accent-color: #e74c3c;
+$background-color: #f5f6fa;
+$text-color: #2c3e50;
+$card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-speed: 0.3s;
+
+.edit-player-container {
+  min-height: 100vh;
+  padding: 6rem 2rem 2rem;
+  background: linear-gradient(135deg, #f5f6fa 0%, #e8eaf6 100%);
+  font-family: 'Roboto', sans-serif;
+
+  h1 {
+    text-align: center;
+    color: $primary-color;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: $secondary-color;
+      border-radius: 2px;
+    }
+  }
+
+  .error-message {
+    text-align: center;
+    color: $accent-color;
+    background: rgba($accent-color, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 600px;
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .success-message {
+    text-align: center;
+    color: #27ae60;
+    background: rgba(#27ae60, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: $card-shadow;
+    animation: slideUp 0.5s ease-out;
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $text-color;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all $transition-speed ease;
+      }
+
+      input, select {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all $transition-speed ease;
+        background: $background-color;
+        color: $text-color;
+
+        &:focus {
+          outline: none;
+          border-color: $secondary-color;
+          box-shadow: 0 0 0 3px rgba($secondary-color, 0.1);
+        }
+
+        &:hover {
+          border-color: darken(#e0e0e0, 10%);
+        }
+
+        &::placeholder {
+          color: #95a5a6;
+        }
+
+        &:disabled {
+          background: #f5f5f5;
+          cursor: not-allowed;
+          opacity: 0.7;
+        }
+      }
+
+      select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5rem;
+
+        &:focus {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        }
+      }
+
+      .error-text {
+        color: $accent-color;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+      }
+    }
+
+    .button-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+
+      button {
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all $transition-speed ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        &[type="submit"] {
+          background: $secondary-color;
+          color: white;
+
+          &:hover:not(:disabled) {
+            background: darken($secondary-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba($secondary-color, 0.3);
+          }
+
+          &:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+          }
+
+          svg {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+        }
+
+        &[type="button"] {
+          background: $primary-color;
+          color: white;
+
+          &:hover {
+            background: darken($primary-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+          }
+
+          svg {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animazioni
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .edit-player-container {
+    padding: 5rem 1rem 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    form {
+      padding: 1.5rem;
+
+      .button-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+// Loading state
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid $background-color;
+    border-top-color: $secondary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

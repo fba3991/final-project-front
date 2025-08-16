@@ -1,0 +1,256 @@
+// Variabili
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$accent-color: #e74c3c;
+$background-color: #f5f6fa;
+$text-color: #2c3e50;
+$card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-speed: 0.3s;
+
+.player-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* taglia l'immagine per adattarla  */
+  display: block;
+  margin: 0 auto; /* Centra l'immagine orizzontalmente */
+  margin-bottom: 1rem;
+}
+
+.PlayerPage {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f6fa 0%, #e8eaf6 100%);
+  font-family: 'Roboto', sans-serif;
+
+  h1 {
+    text-align: center;
+    color: $primary-color;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: $secondary-color;
+      border-radius: 2px;
+    }
+  }
+
+  .player-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: $card-shadow;
+    overflow: hidden;
+    transition: transform $transition-speed ease;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .player-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: $card-shadow;
+      transition: transform $transition-speed ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+
+      li {
+        padding: 1rem;
+        background: $background-color;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        color: $text-color;
+        transition: all $transition-speed ease;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &:hover {
+          background: $secondary-color;
+          color: white;
+          transform: translateX(5px);
+        }
+
+        &::before {
+          content: attr(data-label);
+          font-size: 0.8rem;
+          color: rgba(0, 0, 0, 0.6);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .button-container {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+
+      button {
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all $transition-speed ease;
+        min-width: 200px;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        &.button-handle {
+          background: $accent-color;
+          color: white;
+
+          &:hover {
+            background: darken($accent-color, 10%);
+            transform: translateY(-2px);
+          }
+        }
+
+        &.button-edit {
+          background: $secondary-color;
+          color: white;
+
+          &:hover {
+            background: darken($secondary-color, 10%);
+            transform: translateY(-2px);
+          }
+        }
+
+        &.button-list {
+          background: $primary-color;
+          color: white;
+
+          &:hover {
+            background: darken($primary-color, 10%);
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Stili per schermi fino a 600px  */
+@media (max-width: 600px) {
+  .PlayerPage {
+    padding: 1rem;
+  }
+
+  .PlayerPage ul {
+    flex-direction: column; /* Cambia la direzione dei flexbox in colonna solo all'interno di PlayerPage */
+    align-items: center; /* Allinea gli elementi al centro solo all'interno di PlayerPage */
+  }
+
+  .PlayerPage ul li {
+    width: 100%; /* Imposta la larghezza completa per gli elementi della lista solo all'interno di PlayerPage */
+    margin-bottom: 1rem; /* Aggiungi spazio inferiore tra gli elementi solo all'interno di PlayerPage */
+  }
+}
+/* Stili per schermi fino a 768px ipad */
+@media (max-width: 768px) {
+  .PlayerPage {
+    padding: 1rem;
+
+    .player-card {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+
+      .player-image {
+        height: 250px;
+      }
+
+      .button-container {
+        flex-direction: column;
+        
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .PlayerPage {
+    padding: 2rem;
+  }
+}
+
+/* Stili per schermi da 1025px a 1440px (laptop) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .PlayerPage {
+    padding: 2rem;
+  }
+
+  ul li {
+    flex-basis: calc(33.33% - 2rem); /* Ripristina le 3 colonne */
+  }
+}
+
+/* Stili per schermi oltre 1440px (schermi TV e desktop molto larghi) */
+@media (min-width: 1441px) {
+  .PlayerPage {
+    padding: 3rem;
+  }
+
+  ul li {
+    flex-basis: calc(25% - 2rem); /* Mostra 4 colonne */
+  }
+}
+
+// Animazioni
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.PlayerPage {
+  animation: fadeIn 0.5s ease-out;
+}

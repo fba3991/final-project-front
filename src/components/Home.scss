@@ -1,0 +1,561 @@
+// Palette ispirata a club site
+$primary: #7a0019; // bordeaux club-like
+$secondary: #f7b32b; // accento oro
+$dark: #121212;
+$gray: #2c2c2c;
+$muted: #8f8f8f;
+$light: #ffffff;
+
+.home {
+  background: #f7f7f7;
+  // Assicuriamoci che non ci siano sovrapposizioni con l'header fisso
+  padding-top: 20px; // Spazio extra per l'header fisso
+  min-height: calc(100vh - 80px); // Altezza minima considerando l'header
+}
+
+// Hero slider
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 440px;
+  overflow: hidden;
+  margin-top: 20px; // Spazio extra sopra l'hero
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity .6s ease, transform .8s ease;
+
+    &.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.35));
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: $light;
+      padding: 0 1rem;
+
+      h3 { 
+        margin: 0 0 .5rem; 
+        font-weight: 500; 
+        letter-spacing: .12em; 
+        text-transform: uppercase; 
+        font-size: 1.2rem;
+      }
+      
+      h1 { 
+        margin: 0 0 1rem; 
+        font-size: clamp(2rem, 4vw, 3.5rem); 
+        font-weight: 800; 
+        letter-spacing: .02em; 
+        line-height: 1.1;
+      }
+
+      .cta {
+        background: $secondary;
+        color: $dark;
+        padding: .9rem 1.5rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: .04em;
+        transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        box-shadow: 0 10px 24px rgba(0,0,0,.25);
+        
+        &:hover { 
+          transform: translateY(-2px); 
+          box-shadow: 0 14px 28px rgba(0,0,0,.28); 
+        }
+      }
+    }
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; 
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    display: grid; 
+    place-items: center;
+    color: $light; 
+    background: rgba(0,0,0,.4);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+    z-index: 10; // Assicuriamoci che sia sopra tutto
+    
+    &:hover { 
+      background: rgba(0,0,0,.6); 
+      transform: translateY(-50%) scale(1.04); 
+    }
+    
+    &.prev { left: 12px; }
+    &.next { right: 12px; }
+  }
+
+  .dots { 
+    position: absolute; 
+    bottom: 16px; 
+    left: 0; 
+    right: 0; 
+    display: flex; 
+    gap: 8px; 
+    justify-content: center; 
+    z-index: 10; // Assicuriamoci che sia sopra tutto
+  }
+  
+  .dot { 
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+    border: 2px solid rgba(255,255,255,.8); 
+    background: transparent; 
+    cursor: pointer; 
+    opacity: .8; 
+    
+    &.active { 
+      background: $secondary; 
+      border-color: $secondary; 
+    } 
+  }
+}
+
+// Quick actions
+.quick-actions {
+  max-width: 1200px; 
+  margin: -28px auto 24px; 
+  padding: 0 16px; 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 12px;
+  position: relative;
+  z-index: 5; // Assicuriamoci che sia sopra l'hero
+  
+  .action {
+    background: $light; 
+    border-radius: 14px; 
+    padding: 14px; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    color: $dark; 
+    text-decoration: none; 
+    font-weight: 700; 
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    transition: transform .2s ease, box-shadow .2s ease;
+    
+    svg { 
+      color: $primary; 
+      font-size: 1.2rem;
+    }
+    
+    &:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 12px 24px rgba(0,0,0,.09); 
+    }
+  }
+  
+  @media (max-width: 768px) { 
+    grid-template-columns: repeat(2, 1fr); 
+    margin-top: 0; 
+  }
+}
+
+// News section
+.news { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 24px 16px 8px;
+  
+  .section-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    
+    h2 { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      margin: 0; 
+      font-weight: 800; 
+      color: $dark; 
+      font-size: 1.8rem;
+    }
+    
+    .see-all { 
+      color: $primary; 
+      text-decoration: none; 
+      font-weight: 600; 
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background .2s ease;
+      
+      &:hover {
+        background: rgba(122, 0, 25, 0.1);
+      }
+    }
+  }
+  
+  .cards { 
+    display: grid; 
+    gap: 20px; 
+    grid-template-columns: repeat(3, 1fr);
+    
+    @media (max-width: 900px) { 
+      grid-template-columns: 1fr 1fr; 
+    }
+    
+    @media (max-width: 600px) { 
+      grid-template-columns: 1fr; 
+    }
+  }
+  
+  .card { 
+    background: $light; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 8px 24px rgba(0,0,0,.08); 
+    display: grid; 
+    grid-template-rows: 180px 1fr;
+    transition: transform .2s ease, box-shadow .2s ease;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.12);
+    }
+    
+    img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+    }
+    
+    .body { 
+      padding: 18px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px; 
+      
+      h3 { 
+        margin: 0; 
+        font-size: 1.2rem; 
+        color: $dark; 
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      
+      p { 
+        margin: 0; 
+        color: $muted; 
+        line-height: 1.5;
+      }
+      
+      .more { 
+        margin-top: 8px; 
+        color: $primary; 
+        text-decoration: none; 
+        font-weight: 700; 
+        padding: 8px 0;
+        transition: color .2s ease;
+        
+        &:hover {
+          color: darken($primary, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Calendar & Results
+.calendar-results { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 8px 16px 40px;
+  
+  .grid { 
+    display: grid; 
+    gap: 20px; 
+    grid-template-columns: 1fr 1fr; 
+    
+    @media (max-width: 900px) { 
+      grid-template-columns: 1fr; 
+    } 
+  }
+  
+  .panel { 
+    background: $light; 
+    border-radius: 16px; 
+    box-shadow: 0 8px 24px rgba(0,0,0,.08); 
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.12);
+    }
+    
+    .panel-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 18px 20px; 
+      border-bottom: 1px solid #eee; 
+      background: #fafafa;
+      
+      h3 { 
+        margin: 0; 
+        display: flex; 
+        gap: 10px; 
+        align-items: center; 
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: $dark;
+      } 
+      
+      .see-all { 
+        color: $primary; 
+        text-decoration: none; 
+        font-weight: 700; 
+        padding: 6px 12px;
+        border-radius: 15px;
+        transition: background .2s ease;
+        
+        &:hover {
+          background: rgba(122, 0, 25, 0.1);
+        }
+      } 
+    }
+    
+    ul { 
+      margin: 0; 
+      padding: 0; 
+      list-style: none; 
+      
+      li { 
+        display: grid; 
+        grid-template-columns: 80px 1fr auto; 
+        gap: 15px; 
+        padding: 15px 20px; 
+        align-items: center; 
+        border-left: 4px solid transparent; 
+        transition: all .2s ease;
+        
+        &:nth-child(odd) { 
+          background: #fafafa; 
+        }
+        
+        .date { 
+          font-weight: 800; 
+          color: $dark; 
+          font-size: 0.9rem;
+        }
+        
+        .match { 
+          color: $dark; 
+          font-weight: 600; 
+          font-size: 0.95rem;
+        }
+        
+        .label { 
+          background: #f0f0f0; 
+          padding: 4px 12px; 
+          border-radius: 14px; 
+          font-weight: 700; 
+          color: $gray; 
+          font-size: 0.8rem;
+          text-transform: uppercase;
+        }
+        
+        &:hover { 
+          border-left-color: $secondary; 
+          background: #fff7e0; 
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+}
+
+// Footer rich
+.club-footer { 
+  background: $dark; 
+  color: $light; 
+  padding: 40px 16px; 
+  margin-top: 40px;
+  
+  .newsletter { 
+    max-width: 900px; 
+    margin: 0 auto 30px; 
+    text-align: center; 
+    
+    h3 { 
+      margin: 0 0 15px; 
+      font-weight: 800; 
+      font-size: 1.5rem;
+    }
+    
+    .newsletter-form { 
+      display: flex; 
+      gap: 12px; 
+      justify-content: center; 
+      flex-wrap: wrap;
+      
+      input { 
+        padding: 14px 18px; 
+        border-radius: 999px; 
+        border: none; 
+        outline: none; 
+        width: min(100%, 340px); 
+        font-size: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        
+        &:focus {
+          box-shadow: 0 4px 16px rgba(247, 179, 43, 0.3);
+        }
+      }
+      
+      button { 
+        background: $secondary; 
+        color: $dark; 
+        border: none; 
+        padding: 14px 24px; 
+        border-radius: 999px; 
+        font-weight: 800; 
+        cursor: pointer; 
+        transition: transform .2s ease, box-shadow .2s ease;
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(247, 179, 43, 0.4);
+        }
+      }
+    }
+    
+    small { 
+      color: #bbb; 
+      display: block; 
+      margin-top: 12px; 
+      font-size: 0.9rem;
+    }
+  }
+  
+  .legal { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    text-align: center; 
+    color: #aaa; 
+    font-size: .9rem; 
+    display: grid; 
+    gap: 6px; 
+    padding-top: 20px;
+    border-top: 1px solid #333;
+  }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .home {
+    padding-top: 10px;
+  }
+  
+  .hero {
+    height: 60vh;
+    min-height: 350px;
+    margin-top: 10px;
+    
+    .content {
+      h1 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+      }
+      
+      h3 {
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .quick-actions {
+    margin-top: 0;
+    gap: 8px;
+    
+    .action {
+      padding: 12px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .news, .calendar-results {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .club-footer {
+    padding: 30px 12px;
+    
+    .newsletter-form {
+      flex-direction: column;
+      align-items: center;
+      
+      input, button {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 50vh;
+    min-height: 300px;
+    
+    .nav {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .dots {
+      bottom: 12px;
+    }
+  }
+  
+  .quick-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .news .cards {
+    gap: 16px;
+  }
+  
+  .calendar-results .panel ul li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: center;
+    
+    .date, .label {
+      justify-self: center;
+    }
+  }
+}

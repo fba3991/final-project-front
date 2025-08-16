@@ -1,0 +1,181 @@
+// Variabili
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$accent-color: #e74c3c;
+$background-color: #f5f6fa;
+$text-color: #2c3e50;
+$card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-speed: 0.3s;
+
+// Stile generale della pagina
+.create-player-container {
+  min-height: 100vh;
+  padding: 6rem 2rem 2rem;
+  background: linear-gradient(135deg, #f5f6fa 0%, #e8eaf6 100%);
+  font-family: 'Roboto', sans-serif;
+
+  h1 {
+    text-align: center;
+    color: $primary-color;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: $secondary-color;
+      border-radius: 2px;
+    }
+  }
+
+  .error-message {
+    text-align: center;
+    color: $accent-color;
+    background: rgba($accent-color, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 600px;
+  }
+
+  .success-message {
+    text-align: center;
+    color: #27ae60;
+    background: rgba(#27ae60, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 600px;
+  }
+
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: $card-shadow;
+
+    label {
+      display: block;
+      margin-bottom: 1.5rem;
+      color: $text-color;
+      font-weight: 500;
+
+      input, select {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        margin-top: 0.5rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all $transition-speed ease;
+        background: $background-color;
+
+        &:focus {
+          outline: none;
+          border-color: $secondary-color;
+          box-shadow: 0 0 0 3px rgba($secondary-color, 0.1);
+        }
+
+        &::placeholder {
+          color: #95a5a6;
+        }
+      }
+
+      select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5rem;
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all $transition-speed ease;
+      margin-top: 1rem;
+
+      &[type="submit"] {
+        background: $secondary-color;
+        color: white;
+
+        &:hover:not(:disabled) {
+          background: darken($secondary-color, 10%);
+          transform: translateY(-2px);
+        }
+
+        &:disabled {
+          background: #bdc3c7;
+          cursor: not-allowed;
+        }
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &:not([type="submit"]) {
+        background: $primary-color;
+        color: white;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .create-player-container {
+    padding: 5rem 1rem 1rem;
+
+    form {
+      padding: 1.5rem;
+    }
+  }
+}
+
+// Animazioni
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.create-player-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+form {
+  animation: fadeIn 0.5s ease-out 0.2s both;
+}
